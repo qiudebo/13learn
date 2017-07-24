@@ -1,0 +1,164 @@
+
+本章介绍了如何把MySQL数据库中的数据导入到Hadoop的HDFS中。 "导入工具"导入单个表从RDBMS到HDFS。表中的每一行被视为HDFS的记录。所有记录都存储为文本文件的文本数据或二进制数据。 
+二进制格式分别是Avro和SequenceFile。使用--as-avrodatafile或--as-sequencefile以指定具体使用哪种二进制格式。
+
+---
+
+### 语法
+
+下面的语法用于将数据导入HDFS。
+```other
+$ sqoop import (generic-args) (import-args) 
+```
+```other
+$ sqoop-import (generic-args) (import-args)
+```
+
+### 数据
+
+我们在 mysql 中创建sqoopdb数据库，并创建三种表，
+我们以命名为emp, emp_add和emp_contact，这是一个在MySQL数据库服务器名为sqoopdb 数据库的一个例子。
+
+三个表及其数据如下
+emp:
+
+|id|name|deg|salary|dept|
+|-|-|-|-|-|
+|1201|gopal|manager|50,000|TP|
+|1202|manisha|Proof reader|50,000|TP|
+|1203|khalil|php dev|30,000|AC|
+|1204|prasanth|php dev|30,000|AC|
+|1205|kranthi|admin|20,000|TP|
+
+emp_add:
+
+|id|hno|street|city|
+|-|-|-|-|
+|1201|288A|vgiri|jublee|
+|1202|108I|aoc|sec-bad|
+|1203|144Z|pgutta|hyd|
+|1204|78B|old city|sec-bad|
+|1205|720X|hitec|sec-bad|
+
+emp_contact
+
+|id|phno|email|
+|-|-|-|
+|1201|2356742|gopal@tp.com|
+|1202|1661663|manisha@tp.com|
+|1203|8887776|khalil@ac.com|
+|1204|9988774|prasanth@ac.com|
+|1205|1231231|kranthi@tp.com|
+
+### 命令示例
+
+``` other
+sqoop import \
+--connect  JDBC_URL      \
+--username USERNAME      \
+--password PASSWORD   \
+--table TABLE        \
+--hive-import        \
+--split-by SPLIT_BY_COL \
+--num-mappers N        \
+--hive-database HIVE_DB_NAME    \ 
+--hive-table HIVE_TABLE_NAME    \ 
+(--hive-partition-key partition_name    \
+--hive-partition-value partititon_value    \
+附：如果是分区表则需指出分区名称和分区值)
+--columns col1，clo2,col3…     \
+--warehouse-dir /user/hive/warehouse/       \
+--fields-terminated-by ‘|’     \
+--direct                       \
+--compress
+```
+
+**注意:**对于--warehouse-dir需要指定为/user/hive/warehouse/但在该路径下不能存在与TABLE(--table)同名的文件，否则导入失败。当导入成功时，会在该路径下生成数据文件part-m-XXXXX并且生成与TABLE(--table)同名文件，存放导入成功的标志文件_SUCCESS。
+
+--- 
+
+## 基本用法
+
+### 从关系型数据库导出表的数据到HDFS
+
+```other
+./sqoop import –connect
+jdbc:mysql://192.168.0.1:3306/sqoopdb –username=sqoop
+–password=123456 –table emp -m 1 –target-dir
+/user/test
+```
+
+### 从关系型数据库导出查询语句结果到HDFS
+
+```other
+import –connect jdbc:mysql://192.168.0.1:3306/sqoopdb –username=sqoop –password 123456 
+       –query "select name,deg,salary,dept from emp" –target-dir /user/test  –num-mappers 2
+```
+
+### 从关系数据库导入文件到hive中
+
+```other
+sqoop import –connect jdbc:mysql://localhost:3306/sqoopdb –username sqoop 
+      –password 123456 –table emp –hive-import –hive-table
+emp_test -m 1
+```
+
+
+### 从数据库增量导入表数据到HDFS中
+
+```other
+./sqoop import –connect jdbc:mysql://192.168.0.1:3306/sqoopdb
+–username=sqoop –password=123456 –table emp -m 1
+–target-dir /user/test  –check-column id –incremental append
+–last-value 3
+```
+
+## 优化说明
+
+### 压缩导入的数据
+
+使用—compress或-z参数以压缩导入之后的数据。默认的压缩算法为GZip，所有文件的后缀名均为.gz。
+可以使用—compress-codec来指定其他的codec。如
+```other
+--compression-codec org.apache.hadoop.io.compress.BZip2Codec
+```
+使用压缩需要将mapreduce中对应的设置项开启，如mapreduce.output.compress。
+
+### 提高传输速度
+
+不同于JDBC接口，direct模式下使用数据库提供的本地工具进行数据传输。在MySQL中使用mysqldump和mysqlimport。对于PostgreSQL，sqoop会使用pg_dump工具来导入数据。使用本地工具会极大提高性能，因为他们针对数据传输做了优化，以降低数据库服务器的负担。当然也有很多限制，比如并不是所有的数据库都提供本地工具。目前sqoop的direct模式只支持MySQL和PostgreSQL。
+
+### 自定义类型映射
+
+使用—amp-column-java参数来将列列映射到java类以覆盖sqoop提供的默认的映射关系。
+如要将c1、c2、c3分别映射为Float、String、String，对应的设置如下所示。
+```other
+sqoop import --map-column-java c1=Float,c2=String,c3=String ...
+```
+### 并行控制
+
+Sqoop默认使用4个并发的map任务来项hadoop传输数据。当数据量比较大时可以考虑增加并发执行的map任务的数量以提高传输速度。使用参数—num-mappers来控制map任务的数量。
+
+### 对NULL值进行编码
+
+Sqoop使用“null”字符串来代替数据库中的NULL值。对于文本类型的列，使用—null-string来设置替代NULL值得字符串，对于其他类型的列，则使用—null-non-string来设置。
+
+如果想使用\N来编码NULL值，则对应sqoop命令中的值为\N， \在JAVA中是转义字符。
+```other
+--null-string '\\N' \
+--null-non-string '\\N'
+```
+
+### 在metastore中保存密码
+
+很不幸，每次使用sqoop job执行任务都需要手动输入密码。
+解决方式有两种：
+第一种方式，使用password-file
+第二种方式，在sqoop-site.xml中添加如下属性即可（添加后第一次仍然需要输入密码 ）。
+```other
+<property>
+   <name>sqoop.metastore.client.record.password</name>
+   <value>true</value>
+</property>
+```
+

@@ -1,0 +1,22 @@
+
+本章介绍了如何使用Sqoop list及Sqoop create命令。
+
+*  Sqoop list 数据库工具解析并执行对数据库服务器的 "SHOW DATABASES"查询，然后显示了该服务器上的所有数据库。
+*  Sqoop Create 工具执行复制关系型数据库表结构到hive中。
+
+ ---
+
+### 列出 mysql 数据库中的所有数据库
+
+```other
+sqoop list-databases –connect jdbc:mysql://192.168.0.1:3306/ –username root –password 123456
+```
+
+### 将关系型数据的表结构复制到hive中,只是复制表的结构，表中的内容没有复制过去。
+
+```other
+sqoop create-hive-table –connect jdbc:mysql://localhost:3306/sqoopdb
+–table emp  –username sqoop –password 123456 –hive-table emp_test
+```
+其中 –table emp 为mysql中的数据库sqoopdb中的表 –hive-table emp_test 为hive中新建的表名称。
+

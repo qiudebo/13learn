@@ -1,0 +1,26 @@
+本章介绍了代码生成工具的重要性。从面向对象的应用角度，数据库中的每个表都有一个DAO类包含的getter和setter方法来初始化对象。
+这个工具（-codegen）自动生成的DAO类。
+
+---
+
+### 语法
+
+以下是Sqoop代码生成命令的语法。
+```other
+$ sqoop codegen (generic-args) (codegen-args) 
+$ sqoop-codegen (generic-args) (codegen-args)
+```
+
+### 示例
+
+让我们以 sqoopdb 数据库中的表 emp 来生成Java代码为例。
+
+下面的命令用来执行该给定的例子。
+
+```other
+sqoop codegen  --connect jdbc:mysql://127.0.0.1:3306/sqoopdb \
+               --username sqoop \
+               --password 123456 \
+               --table emp \
+               --outdir /home/hadoop/sqoop/
+```

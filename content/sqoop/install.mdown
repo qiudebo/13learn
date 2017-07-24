@@ -1,0 +1,39 @@
+
+本章介绍 Sqoop 的安装，Sqoop 在生产环境均安装在linux环境下，前提条件必须安装haoop环境，如果未安装hadoop环境，请到hadoop章节学习安装hadoop。
+
+
+### 1.安装sqoop
+sqoop解压缩
+```other
+wget http://archive-primary.cloudera.com/cdh5/cdh/5/sqoop-1.4.6-cdh5.12.0.tar.gz
+tar -xzvf sqoop-1.4.5-cdh5.4.3.tar.gz
+```
+建软链接
+```other
+ln -s sqoop-1.4.5-cdh5.4.3 sqoop
+```
+
+### 2.配置环境变量
+
+配置bashrc
+```other
+SQOOP_HOME=/usr/local/sqoop
+PATH=$SQOOP_HOME/BIN:$PATH
+export SQOOP_HOME
+```
+配置sqoop
+```other
+cd $SQOOP_HOME/conf
+mv sqoop-env-template.sh sqoop-env.sh
+export HADOOP_COMMON_HOME=/usr/local/hadoop
+export HADOOP_MAPRED_HOME=/usr/local/hadoop
+```
+### 3.配置jdbc驱动包
+```other
+mv mysql-connector-java-5.1.30-bin.jar /usr/local/sqoop
+```
+### 4.验证sqoop
+```
+cd $SQOOP_HOME/bin
+sqoop-version
+```

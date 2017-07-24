@@ -1,0 +1,13 @@
+
+本章将介绍如何使用Sqoop列出MySQL数据库服务器中一个指定的数据库中的所有表。 
+Sqoop的 list-tables 工具解析并执行对指定数据库的"SHOW TABLES"查询后并列出了在数据库中存在的表。
+
+---
+
+### 连接mysql并列出test数据库中的表
+
+```other
+sqoop list-tables –connect jdbc:mysql://192.168.0.1:3306/sqoopdb –username sqoop –password 123456
+```
+
+命令中的test为mysql数据库中的 sqoopdb 数据库名称 ,username password分别为mysql数据库的用户密码

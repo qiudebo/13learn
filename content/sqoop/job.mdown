@@ -1,0 +1,61 @@
+
+本章介绍如何创建和维护Sqoop作业。
+
+---
+
+### 语法
+
+以下是创建Sqoop作业的语法。
+```other
+$ sqoop job (generic-args) (job-args)
+   [-- [subtool-name] (subtool-args)]
+```
+```other
+$ sqoop-job (generic-args) (job-args)
+   [-- [subtool-name] (subtool-args)]
+```
+
+### 创建任务
+
+我们创建一个名为 myjob 的作业，从mysql数据库的emp表导入数据到HDFS文件。
+
+```other
+sqoop job \
+   --create myjob \
+   --import \
+   --connect jdbc:mysql://192.168.0.1:3306/sqoopdb \
+   --username sqoop \
+   --password 123456 \
+   --table emp \
+   --incremental append \
+   --check-column id \
+   --last-value 0
+```
+
+### 执行任务
+
+'--exec' 选项用于执行保存的作业。下面的命令用于执行保存的作业称为myjob。
+
+```other
+sqoop job --exec myjob
+```
+### 删除任务
+```other
+sqoop job --delete myjob
+```
+### 查看任务信息，信息中会包含last-value的当前值。
+
+```other
+sqoop job --show myjob
+```
+
+### 参数详解
+
+|选项|说明|
+|-|-|
+|--create < job-id >|定义sqoop job|
+|--delete < job-id>|删除sqoop job|
+|--exec < job-id>|执行sqoop job|
+|--show < job-id>|查看sqoop job状态及详细信息|
+|--list|查看所有sqoop job|
+

@@ -1,0 +1,58 @@
+
+本章介绍了如何使用Sqoop的Eval工具。它允许用户在对应的数据库服务器上执行用户定义的查询，并在控制台中预览结果。
+因此，用户可以使用该命令查看关系型数据库表数据，同时可以执行DDL和DML命令。
+
+---
+
+### 语法
+
+以下语法用于Sqoop eval命令。
+```other
+$ sqoop eval (generic-args) (eval-args) 
+$ sqoop-eval (generic-args) (eval-args)
+```
+### 查询
+
+使用eval工具，我们可以评估计算任何类型的SQL查询。
+下面的命令用来评估计算使用SQL查询：
+
+$ sqoop eval \
+--connect jdbc:mysql://192.168.0.1:3306/sqoopdb \
+--username sqoop \ 
+--query “SELECT * FROM emp LIMIT 3”
+如果命令成功执行，那么它就会产生在终端上显示下面的输出。
+```other
++------+--------------+-------------+-------------------+--------+
+| Id   | Name         | Deg         | Salary            | Dept   |
++------+--------------+-------------+-------------------+--------+
+| 1201 | gopal        | manager     | 50000             | TP     |
+| 1202 | manisha      | preader     | 50000             | TP     |
+| 1203 | khalil       | php dev     | 30000             | AC     |
++------+--------------+-------------+-------------------+--------+
+```
+### 插入
+下面的命令用于在mysql数据库的员工表(emp) 表中插入新行。
+```other
+$ sqoop eval \
+--connect jdbc:mysql://192.168.0.1:3306/sqoopdb \
+--username sqoop \ 
+-e “INSERT INTO emp VALUES(1207,‘Raju’,‘UI dev’,15000,‘TP’)”
+```
+如果命令成功执行，那么它会显示在控制台上更新的行的状态。  
+也可以在MySQL控制台 验证emp 表
+```other
+mysql>
+mysql> use db;
+mysql> SELECT * FROM employee;
++------+--------------+-------------+-------------------+--------+
+| Id   | Name         | Designation | Salary            | Dept   |
++------+--------------+-------------+-------------------+--------+
+| 1201 | gopal        | manager     | 50000             | TP     |
+| 1202 | manisha      | preader     | 50000             | TP     |
+| 1203 | khalil       | php dev     | 30000             | AC     |
+| 1204 | prasanth     | php dev     | 30000             | AC     |
+| 1205 | kranthi      | admin       | 20000             | TP     |
+| 1206 | satish p     | grp des     | 20000             | GR     |
+| 1207 | Raju         | UI dev      | 15000             | TP     |
++------+--------------+-------------+-------------------+--------+
+```

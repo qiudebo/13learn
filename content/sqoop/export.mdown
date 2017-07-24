@@ -1,0 +1,117 @@
+
+本章介绍如何将数据从HDFS导出到关系型数据库中。
+
+---
+
+### 语法
+
+以下是export命令语法。
+
+```other
+$ sqoop export (generic-args) (export-args) 
+$ sqoop-export (generic-args) (export-args)
+```
+
+### 数据
+
+HDFS中员工数据的数据文件在目录/user/hive/warehouse/emp/2017-07-05/下：
+```other
+1201, gopal,     manager, 50000, TP
+1202, manisha,   preader, 50000, TP
+1203, kalil,     php dev, 30000, AC
+1204, prasanth,  php dev, 30000, AC
+1205, kranthi,   admin,   20000, TP
+```
+
+###  hive导出数据到mysql
+
+将hive中的表数据导入到mysql中,在进行导入之前，mysql中的表
+emp必须已经提起创建好了。
+```other
+sqoop export –connect jdbc:mysql://192.16.0.1:3306/sqoopdb –username
+sqoop –password root –table emp –export-dir /user/hive/warehouse/emp/dt=2017-07-05 
+--fields-terminated-by ',' 
+```
+
+**注意**：对于hive中有null时，导入到MySQL中依然是NULL。
+
+### 批量插入
+
+sqoop使用独立的insert语句来添加每一行记录，使用如下的方式可以每次插入多条记录。即批量插入，每次插入10条。
+```other
+sqoop export \
+   -Dsqoop.export.records.per.statement=10 \
+   --connect jdbc:mysql://192.168.0.1:3306/sqoopdb \
+   --username sqoop \
+   --password 123456 \
+   --table emp \
+   --export-dir /user/hive/warehouse/emp \
+   --batch
+```
+
+### 导出所有数据或不导出任何数据
+
+我们需要确保或者所有数据均导出成功，或者不导出任何数据。为此我们使用临时表， 
+即先将数据导出到临时表（staging-table）中，然后再转移到目标表中。
+```other
+sqoop export \
+   --connect jdbc:mysql://192.168.0.1:3306/sqoopdb \
+   --username sqoop \
+   --password 123456 \
+   --table emp \
+   --staging-table staging_cities
+```
+
+### 更新已有数据
+
+使用—update-key参数指定一列，该列可以识别出被修改的行，通常是表中的主键。例如下面的示例中使用列id来更新cities表。
+```other
+sqoop export \
+   --connect jdbc:mysql://192.168.0.1:3306/sqoopdb \
+   --username sqoop \
+   --password 123456 \
+   --table emp \
+   --update-key id
+```
+
+可以指定多个列，列之间用逗号隔开。
+**注意**：该操作只会更新已有的数据，不会插入新的数据，
+
+### 更新或插入数据
+
+使用如下的参数可以同时插入新数据或更新已有数据。
+```other
+sqoop export \
+   --connect jdbc:mysql://192.168.0.1:3306/sqoopdb \
+   --username sqoop \
+   --password 123456 \
+   --table emp \
+   --update-key id \
+   --update-mode allowinsert
+```
+
+### 只导出某些列
+
+Sqoop默认hdfs中的数据和数据库中有相同数量的列并且顺序相同，使用—columns参数可以指定需要导出到数据库中的列或者指定导出列之间的顺序。如只导出coutry和city列，就可以使用如下示例。
+
+```other
+sqoop export \
+   --connect jdbc:mysql://192.168.0.1:3306/sqoopdb \
+   --username sqoop \
+   --password 123456 \
+   --table emp \
+   --columns id,name
+```
+
+### 编码NULL值
+
+你可以使用—input-null-string和—input-null-no-string参数来覆盖NULL值的替换字符串，例如使用‘\N’替换NULL值。
+```other
+sqoop export \
+   --connect jdbc:mysql://192.168.0.1:3306/sqoopdb \
+   --username sqoop \
+   --password 123456 \
+   --table emp \
+   --input-null-string '\\N' \
+   --input-null-non-string '\\N'
+```

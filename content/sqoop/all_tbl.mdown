@@ -1,0 +1,49 @@
+本章介绍如何导入从RDBMS数据库服务器到HDFS所有表。每个表的数据存储在一个单独的目录，目录名与表名相同。
+
+---
+
+### 语法
+
+以下语法用于导入所有表。
+```other
+$ sqoop import-all-tables (generic-args) (import-args) 
+$ sqoop-import-all-tables (generic-args) (import-args)
+```
+
+### 示例
+
+以下是从 sqoopdb 数据库导入的所有表的一个例子。数据库sqoopdb包含表的列表如下。
+```other
+ +--------------------+
+ |      Tables        |
+ +--------------------+
+ |      emp           |
+ |      emp_add       |
+ |      emp_contact   |
+ +--------------------+
+```
+### 下面的命令用于从 sqoopdb 数据库中导入所有的表。
+```other
+sqoop import-all-tables \
+
+   --connect jdbc:mysql://192.168.0.1:3306/sqoopdb \
+
+   --username sqoop \
+
+   --password 123456
+```
+**注意**：如果使用的是import-all-tables，它是强制性的，在该数据库中的每个表必须有一个主键字段。
+
+### 下面的命令用于验证 sqoopdb 数据库的所有表数据到HDFS
+```other
+$ $HADOOP_HOME/bin/hadoop fs -ls
+```
+它会告诉你表名的 sqoopdb 数据库的目录列表。
+
+输出
+```other
+drwxr-xr-x - hadoop supergroup 0 2017-07-22 22:50 _sqoop
+drwxr-xr-x - hadoop supergroup 0 2017-07-23 01:46 emp
+drwxr-xr-x - hadoop supergroup 0 2017-07-23 01:50 emp_add
+drwxr-xr-x - hadoop supergroup 0 2017-07-23 01:52 emp_contact
+```
