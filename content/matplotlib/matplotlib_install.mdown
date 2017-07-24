@@ -1,0 +1,13 @@
+安装Matplotlib的方式和numpy很像，可以直接通过Unix/Linux的软件管理工具，比如Ubuntu 16.04 LTS下，输入：
+
+> sudo apt install python-matplotlib
+
+或者通过pip安装：
+
+> pip install matplotlib
+
+Windows下也可以通过pip，或是到官网下载：
+
+python plotting - Matplotlib 1.5.3 documentation
+
+Matplotlib非常强大，不过在深度学习中常用的其实只有很基础的一些功能，这节主要介绍2D图表，3D图表和图像显示。
