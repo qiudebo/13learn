@@ -1,0 +1,9 @@
+italics  bold
+headers
+links
+images
+blockquotes
+lists
+paragraphs
+horizontal rules
+
