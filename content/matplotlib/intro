@@ -1,0 +1,4 @@
+Matplotlib
+Matlplotlib是Python的一个可视化模块。它让你方便地制作线条图、饼图、柱状图以及其它专业图形。使用Matplotlib，你可以定制所做图表的任一方面。在IPython中使用时，Matplotlib有一些互动功能，如：缩放和平移。它支持所有的操作系统下不同的GUI后端（back ends），并且可以将图形输出为常见地矢量图和图形格式，如：PDF、SVG、JPG、PNG、BMP和GIF等。
+教程：
+1. ShowMeDo网站上有一个关于很好地教程
