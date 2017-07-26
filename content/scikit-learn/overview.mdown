@@ -1,0 +1,10 @@
+.Scikit-learn
+Scikit-learn是一个用于机器学习的Python模块。它建立在Scipy之上，提供了一套常用机器学习算法，让使用者通过一个统一的接口来使用。Scikit-learn有助于你迅速地在你的数据集上实现流行的算法。
+看一下Scikit-learn中提供的算法列表，你就会马上意识到它包含了许多用于标准机器学习任务的工具，如：聚类、分类和回归等。
+
+
+
+scikit-learn是一个基于NumPy, SciPy, Matplotlib的开源机器学习工具包，主要涵盖分类，回归和聚类算法，例如SVM， 逻辑回归，朴素贝叶斯，随机森林，k-means等算法，代码和文档
+
+
+http://www.code123.cc/135.html

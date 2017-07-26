@@ -1,0 +1,203 @@
+在前几章节中，我们已经学会了如果在一张表中读取数据，这是相对简单的，但是在真正的应用中经常需要从多个数据表中读取数据。  
+本章节我们将向大家介绍如何使用 MySQL 的 JOIN 在两个或多个表中查询数据。  
+你可以在 SELECT, UPDATE 和 DELETE 语句中使用 Mysql 的 JOIN 来联合多表查询。  
+JOIN 按照功能大致分为如下三类：  
+
+*  **INNER JOIN（内连接,或等值连接）：**获取两个表中字段匹配关系的记录。
+*  **LEFT JOIN（左连接）：**获取左表所有记录，即使右表没有对应匹配的记录。
+*  **RIGHT JOIN（右连接）： **与 LEFT JOIN 相反，用于获取右表所有记录，即使左表没有对应匹配的记录。
+
+本章节使用的数据库结构及数据 
+
+```other
+-- ----------------------------
+--  Table structure for `13learn_tbl`
+-- ----------------------------
+DROP TABLE IF EXISTS `13learn_tbl`;
+CREATE TABLE `13learn_tbl` (
+  `13learn_id` int(11) NOT NULL AUTO_INCREMENT,
+  `13learn_title` varchar(100) NOT NULL,
+  `13learn_author` varchar(40) NOT NULL,
+  `submission_date` date DEFAULT NULL,
+  PRIMARY KEY (`13learn_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Records of `13learn_tbl`
+-- ----------------------------
+BEGIN;
+INSERT INTO `13learn_tbl` VALUES ('1', '学习 PHP', '13LEARN教程', '2017-04-12'),   
+('2', '学习 MySQL', '13LEARN教程', '2017-04-12'),   
+('3', '学习 Java', '13LEARN.COM', '2017-05-01'),   
+('4', '学习 Python', '13LEARN.COM', '2016-03-06'),   
+('5', '学习 C', 'FK', '2017-04-05');
+COMMIT;
+
+-- ----------------------------
+--  Table structure for `tcount_tbl`
+-- ----------------------------
+DROP TABLE IF EXISTS `tcount_tbl`;
+CREATE TABLE `tcount_tbl` (
+  `13learn_author` varchar(255) NOT NULL DEFAULT '',
+  `13learn_count` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Records of `tcount_tbl`
+-- ----------------------------
+BEGIN;
+INSERT INTO `tcount_tbl` VALUES ('13LEARN教程', '10'), ('13LEARN.COM ', '20'), ('Google', '22');
+COMMIT;
+```
+
+---
+
+### 在命令提示符中使用 INNER JOIN
+我们在 13LEARN 数据库中有两张表 tcount_tbl 和 13learn_tbl。两张数据表数据如下：
+### 实例
+尝试以下实例：
+```other
+mysql> use 13LEARN;
+Database changed
+mysql> SELECT * FROM tcount_tbl;
++---------------+--------------+
+| 13learn_author | 13learn_count |
++---------------+--------------+
+| 13learn教程  | 10           |
+| 13LEARN.COM    | 20           |
+| Google        | 22           |
++---------------+--------------+
+3 rows in set (0.01 sec)
+ 
+mysql> SELECT * from 13learn_tbl;
++-----------+---------------+---------------+-----------------+
+| 13learn_id | 13learn_title  | 13learn_author | submission_date |
++-----------+---------------+---------------+-----------------+
+| 1         | 学习 PHP    | 13learn教程  | 2017-04-12      |
+| 2         | 学习 MySQL  | 13learn教程  | 2017-04-12      |
+| 3         | 学习 Java   | 13LEARN.COM    | 2015-05-01      |
+| 4         | 学习 Python | 13LEARN.COM    | 2016-03-06      |
+| 5         | 学习 C      | FK            | 2017-04-05      |
++-----------+---------------+---------------+-----------------+
+5 rows in set (0.01 sec)
+```
+
+接下来我们就使用MySQL的**INNER JOIN**(也可以省略 **INNER** 使用 **JOIN**)来连接以上两张表来读取13learn_tbl表中所有13learn_author字段在tcount_tbl表对应的13learn_count字段值：
+```other
+mysql> SELECT a.13learn_id, a.13learn_author, b.13learn_count FROM 13learn_tbl a   
+  INNER JOIN tcount_tbl b ON a.13learn_author = b.13learn_author;
++-------------+-----------------+----------------+
+| a.13learn_id|a.13learn_author| b.13learn_count|
++-------------+-----------------+----------------+
+| 1           | 13LEARN教程    | 10             |
+| 2           | 13LEARN教程    | 10             |
+| 3           | 13LEARN.COM    | 20             |
+| 4           | 13LEARN.COM    | 20             |
++-------------+-----------------+----------------+
+4 rows in set (0.00 sec)
+```
+
+以上 SQL 语句等价于：
+WHERE 子句
+```other
+mysql> SELECT a.13learn_id, a.13learn_author, b.13learn_count FROM 13learn_tbl a,   
+  tcount_tbl b WHERE a.13learn_author = b.13learn_author;
++-------------+-----------------+----------------+
+| a.13learn_id| a.13learn_author| b.13learn_count|
++-------------+-----------------+----------------+
+| 1           | 13LEARN教程    | 10             |
+| 2           | 13LEARN教程    | 10             |
+| 3           | 13LEARN.COM    | 20             |
+| 4           | 13LEARN.COM    | 20             |
++-------------+-----------------+----------------+
+4 rows in set (0.01 sec)
+```
+
+---
+
+### MySQL LEFT JOIN
+MySQL left join 与 join 有所不同。 MySQL LEFT JOIN 会读取左边数据表的全部数据，即便右边表无对应数据。
+### 实例
+尝试以下实例，以 **13LEARN_tbl** 为左表，**tcount_tbl** 为右表，理解 MySQL LEFT JOIN 的应用：
+LEFT JOIN
+```other
+mysql> SELECT a.13LEARN_id, a.13LEARN_author, b.13LEARN_count FROM 13LEARN_tbl a   
+  LEFT JOIN tcount_tbl b ON a.13LEARN_author = b.13LEARN_author;
++-------------+-----------------+----------------+
+| a.13LEARN_id| a.13LEARN_author| b.13LEARN_count|
++-------------+-----------------+----------------+
+| 1           | 13LEARN教程    | 10             |
+| 2           | 13LEARN教程    | 10             |
+| 3           | 13LEARN.COM    | 20             |
+| 4           | 13LEARN.COM    | 20             |
+| 5           | FK             | NULL           |
++-------------+-----------------+----------------+
+5 rows in set (0.01 sec)
+```
+以上实例中使用了 LEFT JOIN，该语句会读取左边的数据表 13LEARN_tbl 的所有选取的字段数据，  
+即便在右侧表 tcount_tbl中 没有对应的 13LEARN_author 字段值。
+
+---
+
+### MySQL RIGHT JOIN
+MySQL RIGHT JOIN 会读取右边数据表的全部数据，即便左边边表无对应数据。
+### 实例
+尝试以下实例，以 **13learn_tbl** 为左表，**tcount_tbl** 为右表，理解MySQL RIGHT JOIN的应用：
+RIGHT JOIN
+```other
+mysql> SELECT a.13learn_id, a.13learn_author, b.13learn_count FROM 13learn_tbl a   
+       RIGHT JOIN tcount_tbl b ON a.13learn_author = b.13learn_author;
++-------------+-----------------+----------------+
+| a.13learn_id| a.13learn_author| b.13learn_count|
++-------------+-----------------+----------------+
+| 1           | 13LEARN教程    | 10             |
+| 2           | 13LEARN教程    | 10             |
+| 3           | 13LEARN.COM    | 20             |
+| 4           | 13LEARN.COM    | 20             |
+| NULL        | NULL           | 22             |
++-------------+-----------------+----------------+
+5 rows in set (0.01 sec)
+```
+以上实例中使用了 RIGHT JOIN，该语句会读取右边的数据表 tcount_tbl 的所有选取的字段数据，  
+即便在左侧表 13learn_tbl 中没有对应的13learn_author 字段值。 
+
+---
+
+### 在 PHP 脚本中使用 JOIN
+PHP 中使用 mysqli_query() 函数来执行 SQL 语句，你可以使用以上的相同的 SQL 语句作为 mysqli_query() 函数的参数。
+尝试如下实例:
+```other
+MySQL ORDER BY 测试：
+<?php
+$dbhost = 'localhost:3306';  // mysql服务器主机地址
+$dbuser = 'root';            // mysql用户名
+$dbpass = '123456';          // mysql用户名密码
+$conn = mysqli_connect($dbhost, $dbuser, $dbpass);
+if(! $conn )
+{
+    die('连接失败: ' . mysqli_error($conn));
+}
+// 设置编码，防止中文乱码
+mysqli_query($conn , "set names utf8");
+ 
+$sql = 'SELECT a.13learn_id, a.13learn_author, b.13learn_count FROM 13learn_tbl a INNER JOIN tcount_tbl b ON a.13learn_author = b.13learn_author';
+ 
+mysqli_select_db( $conn, '13LEARN' );
+$retval = mysqli_query( $conn, $sql );
+if(! $retval )
+{
+    die('无法读取数据: ' . mysqli_error($conn));
+}
+echo '<h2>13LEARN教程 MySQL JOIN 测试<h2>';
+echo '<table border="1"><tr><td>教程 ID</td><td>作者</td><td>登陆次数</td></tr>';
+while($row = mysqli_fetch_array($retval, MYSQL_ASSOC))
+{
+    echo "<tr><td> {$row['13learn_id']}</td> ".
+         "<td>{$row['13learn_author']} </td> ".
+         "<td>{$row['13learn_count']} </td> ".
+         "</tr>";
+}
+echo '</table>';
+mysqli_close($conn);
+?>
+```

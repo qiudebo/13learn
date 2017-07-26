@@ -6,4 +6,6 @@ blockquotes
 lists
 paragraphs
 horizontal rules
+tables
 
+Horizontal

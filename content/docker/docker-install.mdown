@@ -1,0 +1,118 @@
+## CentOS Docker 安装
+
+Docker支持以下的CentOS版本：
+
+*  CentOS 7 (64-bit)
+*  CentOS 6.5 (64-bit) 或更高的版本
+
+---
+
+## 前提条件
+
+目前，CentOS 仅发行版本中的内核支持 Docker。
+Docker 运行在 CentOS 7 上，要求系统为64位、系统内核版本为 3.10 以上。
+Docker 运行在 CentOS-6.5 或更高的版本的 CentOS 上，要求系统为64位、系统内核版本为 2.6.32-431 或者更高版本。
+
+
+## 使用 yum 安装（CentOS 7下）
+
+Docker 要求 CentOS 系统的内核版本高于 3.10 ，查看本页面的前提条件来验证你的CentOS 版本是否支持 Docker 。
+通过 uname -r 命令查看你当前的内核版本
+```
+[root@13learn ~]# uname -r
+
+3.10.0-327.36.3.el7.x86_64
+```
+
+###安装 Docker
+Docker 软件包和依赖包已经包含在默认的 CentOS-Extras Yum源里，安装命令如下：
+```
+[root@13learn ~]# yum -y install docker
+```
+
+安装过程：
+
+```
+  Installed:
+  docker.x86_64 2:1.12.6-32.git88a4867.el7.centos                                                                                   
+
+Dependency Installed:
+  audit-libs-python.x86_64 0:2.6.5-3.el7_3.1                       checkpolicy.x86_64 0:2.5-4.el7                                  
+  container-selinux.noarch 2:2.19-2.1.el7                          docker-client.x86_64 2:1.12.6-32.git88a4867.el7.centos          
+  docker-common.x86_64 2:1.12.6-32.git88a4867.el7.centos           libcgroup.x86_64 0:0.41-11.el7                                  
+  libseccomp.x86_64 0:2.3.1-2.el7                                  libsemanage-python.x86_64 0:2.5-5.1.el7_3                       
+  oci-register-machine.x86_64 1:0-3.11.gitdd0daef.el7              oci-systemd-hook.x86_64 1:0.1.7-4.gite533efa.el7                
+  policycoreutils-python.x86_64 0:2.5-11.el7_3                     python-IPy.noarch 0:0.75-6.el7                                  
+  setools-libs.x86_64 0:3.3.8-1.1.el7                              skopeo-containers.x86_64 1:0.1.20-2.el7                         
+
+Updated:
+  selinux-policy-targeted.noarch 0:3.13.1-102.el7_3.16                                                                              
+
+Dependency Updated:
+  audit.x86_64 0:2.6.5-3.el7_3.1            audit-libs.x86_64 0:2.6.5-3.el7_3.1             libsemanage.x86_64 0:2.5-5.1.el7_3    
+  policycoreutils.x86_64 0:2.5-11.el7_3     selinux-policy.noarch 0:3.13.1-102.el7_3.16    
+
+Complete!
+```
+
+
+### 启动 Docker 后台服务
+
+```
+[root@13learn ~]# service docker start
+
+Redirecting to /bin/systemctl start  docker.service
+```
+
+测试运行 hello-world
+```
+Unable to find image 'hello-world:latest' locally
+Trying to pull repository docker.io/library/hello-world ... 
+latest: Pulling from docker.io/library/hello-world
+b04784fba78d: Pull complete 
+Digest: sha256:f3b3b28a45160805bb16542c9531888519430e9e6d6ffc09d72261b0d26ff74f
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://cloud.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/engine/userguide/
+
+```
+
+由于本地没有hello-world这个镜像，所以会下载一个hello-world的镜像，并在容器内运行。
+
+---
+
+## 使用脚本安装 Docker
+
+1. 使用 sudo 或 root 权限登录 Centos。  
+2. 确保 yum 包更新到最新。
+>  $ sudo yum update
+
+3. 执行 Docker 安装脚本。
+>  $ curl -fsSL https://get.docker.com/ | sh
+  
+     **注：** 执行这个脚本会添加 docker.repo 源并安装 Docker。
+
+4. 启动 Docker 进程。
+>  $ sudo service docker start
+
+5. 验证 docker 是否安装成功并在容器中执行一个测试的镜像。
+>  $ sudo docker run hello-world
+
+到此，docker 在 CentOS 系统的安装完成。

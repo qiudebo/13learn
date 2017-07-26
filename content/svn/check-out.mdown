@@ -1,0 +1,23 @@
+###SVN 检出操作
+上一章中，我们创建了版本库13learn01,URL为svn://192.168.0.1/13learn01,svn用户admin有读写权限。
+我们就可以通过这个URL在客户端对版本库进行检出操作。
+svn checkout http://svn.server.com/svn/project_repo --username=admin 以上命令将产生如下结果：
+```other
+root@13learn:~/svn# svn checkout svn://192.168.0.1/13learn01 --username=admin
+A    13learn01/trunk
+A    13learn01/branches
+A    13learn01/tags
+Checked out revision 1.
+```
+检出成功后在当前目录下生成13learn01副本目录。查看检出的内容
+```other
+root@13learn:~/svn# ll 13learn01/
+total 24
+drwxr-xr-x 6 root root 4096 Jul 21 19:19 ./
+drwxr-xr-x 3 root root 4096 Jul 21 19:10 ../
+drwxr-xr-x 2 root root 4096 Jul 21 19:19 branches/
+drwxr-xr-x 4 root root 4096 Jul 21 19:19 .svn/
+drwxr-xr-x 2 root root 4096 Jul 21 19:19 tags/
+drwxr-xr-x 2 root root 4096 Jul 21 19:19 trunk/
+```
+你想查看更多关于版本库的信息，执行 info 命令。

@@ -2,7 +2,7 @@
 
 
 
-
+## 线条
 
 ## 线条相关属性标记设置
 
@@ -43,3 +43,26 @@
 
 
 更多标记参考这里  <http://matplotlib.org/api/markers_api.html>
+
+
+
+## 文本
+下面这些命令可用于在任意位置和指定位置添加文本
+基本命令及描述：
+
+>
+*  text()      在坐标系任意位置添加文本
+*  xlabel()    为 x 轴添加标签
+*  ylabel()    为 y 轴添加标签
+*  title()     为坐标系添加标题
+*  annotate()  为坐标系添加注释，带有可选的箭头
+*  suptitlej() 为图形添加标题
+*  figtext()   类似text()
+
+
+![Matplotlib](http://matplotlib.org/_images/text_commands.png "matplotlib")
+
+## 数学表达式
+
+
+## 图表
