@@ -1,0 +1,70 @@
+
+
+## Numpy 函数
+
+*  array()方法 创建数据
+*  shape属性 数组的形状
+*  reshape()方法 创建指定形状的新数组
+*  dtype属性 得到数组的元素类型
+*  arange()方法 通过指定开始值、终值和步长创建等差数组
+*  linspace()方法 通过指定开始值、终值和元素个数创建表示等差数列的一维数组（可通过endpoint指定是否包含终值）
+*  logspace()方法 创建等比数列（base设置基数）
+*  zeros(),ones(),empty()方法 创建指定形状的数组
+*  zeros_like(),ones_like(),empty_like()方法 创建与参数形状和类型相同的数组
+*  frombuffer(),fromstring(),fromfile()方法 从字节序列或文件创建数组
+*  fromfunction()方法 通过预先定义的函数来创建数组
+*  s_对象 创建数组下标
+*  tostring(),tofile()方法 将数组以二进制的方式转换成字符串或者写入文件中
+*  item()方法 返回标准python类型
+*  frompyfunc() 将计算单个值得函数转换为一个能对数组中每个元素进行计算的ufunc函数
+*  ogrid对象 快速产生能进行广播运算的数组
+
+
+### 函数库
+
+sum()求和，mean()求平均值，average()求平均（无out，dtype参数，有weight参数）,std()标准差，var()方差
+min()最小值，max()最大值，ptp()最大最小之差，argmax()最大值下标，argmin()最小值下标
+sort()排序
+
+
+### 多项式
+
+poly1d一元多项式对象，poly1d将系数转换为一元多项式对象
+deriv()方法 多项式微分，integ()方法 多项式积分
+roots()函数 计算多项式的根
+poly函数 将根转换为多项式的系数
+
+### 分段函数
+
+where(condition,y,z)
+select(condlist, choicelist, default=0)
+piecewise(x, condlist, funclist)
+统计函数
+unique()返回其参数数组中所有不同的值，并且按照从小到大的顺序排列
+bincount()函数 对整数数组中各个元素出现的次数进行统计
+histogram()函数 对一维数组进行直方图统计，参数列表：
+histogram(a, bins=10, range=None, normed=False, weights=None)
+
+## 线性代数
+
+### 各种乘积运算
+
+dot() 计算矩阵的乘积
+结果数组中的每个元素都是：数组a最后一维上的所有元素与数组b倒数第二维上的所有元素的乘积和
+inner()
+结果数组中的每个元素都是：数组a和b最后一维的内积
+outer() 只按照一维数组进行计算
+
+### 解线性方程组
+
+linalg模块：numpy线性代数模块
+solve() 求解多元一次方程组
+lstsq() 更一般化的求解多元一次方程组，a可以不是方阵
+
+### 文件存取
+
+tofile()方法 将数组数据以二进制格式写进文件
+fromfile() 读取文件，需要制定dtype类型
+load(),save() 用numpy专用的二进制格式保存数据
+savez() 保存多个数组
+savetxt(),loadtxt() 读写保存一维和二维数组的文本文件
