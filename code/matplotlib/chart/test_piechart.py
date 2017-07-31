@@ -12,6 +12,7 @@ if __name__ == '__main__':
     fig1,ax1 = plt.subplots()
     # 设置阴影 弧度
     ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',shadow=True,startangle=90)
+    # 图形的对称
     ax1.axis('equal')
     plt.savefig("test_piechart.png")
     plt.show()
