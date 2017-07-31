@@ -66,3 +66,35 @@
 
 
 ## 图表
+
+# ha 水平对齐 horizontalalignment
+    # va 垂直对齐 verticalalignment
+    # fontsize 文字大小
+
+设置图的底边距  
+pl.subplots_adjust(bottom = 0.15)
+
+设置透明度
+alpa
+
+
+折线图
+累积柱状图
+双轴柱状
+
+双层饼图
+环形图
+
+
+双Y轴曲线图
+
+
+气泡图
+Bubble Chart
+
+紧凑布局
+tight layout  
+
+padding 填充
+
+
