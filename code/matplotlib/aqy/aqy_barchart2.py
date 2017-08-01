@@ -30,10 +30,10 @@ if __name__ == '__main__':
 
     rects1 = ax.bar(x, y, width, color='g', label=u'我的前半生')
 
-    ax.plot(x, y, 'y-',label=u'我的前半生')
+    ax.plot(x, y, 'yo-',label=u'我的前半生')
 
     rects2 = ax.bar(x + width, y1, width, color='b', label=u'三生三世十里桃花')
-    ax.plot(x+ width, y1, 'r-', label=u'三生三世十里桃花')
+    ax.plot(x+ width, y1, 'ro-', label=u'三生三世十里桃花')
 
     ax.set_yticks(())
 
