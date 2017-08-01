@@ -1,20 +1,21 @@
-Matplotlib是Python中最常用的可视化工具之一，可以非常方便的绘制大量的2D图表和一些基本的3D图表。Matplotlib的原作者John D. Hunter博士是一名神经生物学家,最早是为了可视化癫痫病人的脑皮层电波而研发，因为在函数的设计上参考了MATLAB，所以叫做Matplotlib。Matplotlib首次发表于2007年，在开源和社区的推动下，现在在基于Python的各个科学计算领域都得到了广泛应用。
+Matplotlib是Python中最常用的可视化工具之一，可以非常方便的绘制大量的2D图表和一些基本的3D图表。
+Matplotlib的原作者John D. Hunter博士是一名神经生物学家,最早是为了可视化癫痫病人的脑皮层电波而研发，因为在函数的设计上参考了MATLAB，所以叫做Matplotlib。
+Matplotlib首次发表于2007年，在开源和社区的推动下，现在在基于Python的各个科学计算领域都得到了广泛应用。
 
-Matplotlib绘图
+---
+
+## Matplotlib绘图
 
 Matplotlib可以方便地制作线条图、饼图、柱状图以及其它专业图形，还可以对图形进行定制。
-它支持所有操作系统的图形用户界面，并且可以将图形输出为常见地矢量图和图形格式，如：PDF、SVG、JPG、PNG、BMP和GIF等。
-
-它能让使用者很轻松地将数据图形化，并且提供多样化的输出格式。
+它支持所有操作系统的图形用户界面，并且提供多样化的输出格式，如：PDF、SVG、JPG、PNG、BMP和GIF等。
 
 
-IPython交互式开发环境
-在IPython中使用时，Matplotlib有一些互动功能，如：缩放和平移。
+## IPython交互式开发环境
 
-IPython 是 Python 的一个增强版本。它在下列方面有所增强：命名输入输出、使用系统命令（shell commands）、排错（debug）能力。我们在命令行终端给 IPython 加上参数 -pylab （0.12 以后的版本是 --pylab）之后，就可以像 Matlab 或者 Mathematica 那样以交互的方式绘图。
-pyplot
+IPython 是 Python的一个增强版本。
+它在下列方面有所增强：命名输入输出、使用系统命令（shell commands）、排错（debug）能力。
+我们在命令行终端给 IPython 加上参数 -pylab （0.12 以后的版本是 --pylab）之后，就可以像 Matlab 或者 Mathematica 那样以交互的方式绘图。
 
-
-。这里将会探索 matplotlib 的常见用法。
+这里将会探索 matplotlib 的常见用法。
 ---
 
