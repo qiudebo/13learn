@@ -1,5 +1,7 @@
 Markdown 是一种「电子邮件」风格的「标记语言」，我们强烈推荐所有写作者学习和掌握该语言。
 
+---
+
 Markdown 的优点如下：
 
 *  纯文本，所以兼容性极强，可以用所有文本编辑器打开。
@@ -9,11 +11,9 @@ Markdown 的优点如下：
 
 虽然 Markdown 的语法已经足够简单，但是现有的 Markdown 语法说明更多的是写给 web 从业者看的，对于很多写作者来说，学习起来效率很低，现在，我们从写作者的实际需求出发，介绍写作者真正实用的常用格式，深入浅出、图文并茂地让您迅速掌握 Markdown 语法。
 
+---
 
-
-
-
-Markdown 免费编辑器
+## Markdown 免费编辑器
 
 ### Windows 平台
 
@@ -42,5 +42,5 @@ Markdown 免费编辑器
 
 ### 高级应用
 
-[Sublime Text 2] <http://www.sublimetext.com/3> + [MarkdownEditing] <http://ttscoff.github.io/MarkdownEditing/> / 教程
+[Sublime Text 2] <http://www.sublimetext.com/3> + [MarkdownEditing] <http://ttscoff.github.io/MarkdownEditing/> 教程
 

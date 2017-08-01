@@ -1,6 +1,8 @@
 ## 超链接
 Markdown 支持两种形式的链接语法： 行内式和参考式两种形式，行内式一般使用较多。
 
+---
+
 ### 行内式
 
 **语法说明：**
@@ -15,6 +17,8 @@ Markdown 支持两种形式的链接语法： 行内式和参考式两种形式�
 欢迎来到[13learn](http://www.13learn.com)
 
 欢迎来到[13learn](http://www.13learn.com "13learn")
+
+---
 
 ### 参考式
 
@@ -45,6 +49,7 @@ Markdown 支持两种形式的链接语法： 行内式和参考式两种形式�
 [3]:http://http://blog.13learn.com/markdown "13learn"
 [网站]:http://http://blog.13learn.com/markdown
 
+---
 
 ### 自动链接
 

@@ -9,8 +9,9 @@
 
 **注：** 缩进式插入前方必须有空行
 
-### 行内式
+---
 
+### 行内式
 
 **代码：**
 ```
@@ -20,48 +21,21 @@ C语言里的函数 `scanf()` 怎么使用？
 
 C语言里的函数 `scanf() `怎么使用？
 
-### 用六个`包裹多行代码
+** 用六个`包裹多行代码**
 
 **代码：**
 ```
-\`\`\`
-\#include <stdio.h>
-int main(void)
-{
-    printf("Hello world\n");
-}
-\`\`\`
+ <放入你的代码>
 ```
 显示效果：
 
-#include <stdio.h>
-int main(void)
-{
-    printf("Hello world\n");
-}
+    #include <stdio.h>
+    int main(void)
+    {
+        printf("Hello world\n");
+    }
 
-
-
-
-### 用六个`包裹多行代码
-
-**代码：**
-
-```
-#include <stdio.h>
-int main(void)
-{
-    printf("Hello world\n");
-}
-```
-显示效果：
-
-#include <stdio.h>
-int main(void)
-{
-    printf("Hello world\n");
-}
-
+---
 
 ### 缩进式多行代码
 
@@ -78,14 +52,64 @@ int main(void)
     }
 **显示效果：**
 
-#include <stdio.h>
-int main(void)
-{
-    printf("Hello world\n");
-}
+    #include <stdio.h>
+    int main(void)
+    {
+        printf("Hello world\n");
+    }
+
+---
+
+##  HTML 原始码
+
+在代码区块里面， & 、 < 和 > 会自动转成 HTML 实体，这样的方式让你非常容易使用 Markdown 插入范例用的 HTML 原始码，只需要复制贴上，剩下的 Markdown 都会帮你处理，例如：
+
+**代码：**
+
+第一个例子：
+```
+<div class="footer">
+   © 2017 13learn Corporation
+</div>
+```
+第二个例子：
+```
+<table>
+    <tr>
+        <th rowspan="2">值班人员</th>
+        <th>星期一</th>
+        <th>星期二</th>
+        <th>星期三</th>
+    </tr>
+    <tr>
+        <td>李强</td>
+        <td>张明</td>
+        <td>王平</td>
+    </tr>
+</table>
+```
+显示效果：
+
+第一个例子：
+
+<div class="footer">
+   © 2017 13learn Corporation
+</div>
+
+第二个例子：
+
+<table>
+    <tr>
+        <th rowspan="2">值班人员</th>
+        <th>星期一</th>
+        <th>星期二</th>
+        <th>星期三</th>
+    </tr>
+    <tr>
+        <td>李强</td>
+        <td>张明</td>
+        <td>王平</td>
+    </tr>
+</table>
 
 
-8.4. HTML 原始码
-
-
-吾尝终日而思矣，不如须臾之所学也；吾尝跂而望矣，不如登高之博见也。登高而招，臂非加长也，而见者远；顺风而呼，声非加疾也，而闻者彰。假舆马者，非利足也，而致千里；假舟楫者，非能水也，而绝江河。君子生非异也，善假于物也。

@@ -23,6 +23,7 @@
 
 [^1]:Markdown是一种纯文本标记语言
 
-[^2]:HyperText Markup Language 超文本标记语言
+[^2]:HTML超文本标记语言
 
 [^Le]:开源笔记平台，支持Markdown和笔记直接发为博文
+
