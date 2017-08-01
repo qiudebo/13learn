@@ -1,14 +1,5 @@
 ## 代码区块
 
-需要引用代码时，如果引用的语句只有一段，不分行，。
-`code `
-如果引用的语句为多行，
-```
-第一段代码
-第二段代码
-第三段代码
-```
-
 对于程序员来说这个功能是必不可少的，插入程序代码的方式有两种，一种是利用缩进(Tab), 另一种是利用”`”符号（一般在ESC键下方）包裹代码。
 
 语法说明：
@@ -20,13 +11,57 @@
 
 ### 行内式
 
+
 **代码：**
 ```
 C语言里的函数 `scanf()` 怎么使用？
 ```
 **显示效果：**
 
-C语言里的函数 scanf() 怎么使用？
+C语言里的函数 `scanf() `怎么使用？
+
+### 用六个`包裹多行代码
+
+**代码：**
+```
+\`\`\`
+\#include <stdio.h>
+int main(void)
+{
+    printf("Hello world\n");
+}
+\`\`\`
+```
+显示效果：
+
+#include <stdio.h>
+int main(void)
+{
+    printf("Hello world\n");
+}
+
+
+
+
+### 用六个`包裹多行代码
+
+**代码：**
+
+```
+#include <stdio.h>
+int main(void)
+{
+    printf("Hello world\n");
+}
+```
+显示效果：
+
+#include <stdio.h>
+int main(void)
+{
+    printf("Hello world\n");
+}
+
 
 ### 缩进式多行代码
 
@@ -49,23 +84,8 @@ int main(void)
     printf("Hello world\n");
 }
 
-### 用六个`包裹多行代码
-
-**代码：**
-
-```
-#include <stdio.h>
-int main(void)
-{
-    printf("Hello world\n");
-}
-```
-显示效果：
-
-#include <stdio.h>
-int main(void)
-{
-    printf("Hello world\n");
-}
 
 8.4. HTML 原始码
+
+
+吾尝终日而思矣，不如须臾之所学也；吾尝跂而望矣，不如登高之博见也。登高而招，臂非加长也，而见者远；顺风而呼，声非加疾也，而闻者彰。假舆马者，非利足也，而致千里；假舟楫者，非能水也，而绝江河。君子生非异也，善假于物也。
