@@ -60,3 +60,96 @@ https://vega.github.io/vega/examples/histogram/
 网络图
 地图
 
+
+gca 'get current axis'
+ax =plt.gca()
+
+选择坐标轴设置
+ax.spines['right'].set_color('none')
+
+ax.spines['top'].set_color('none')
+设置x，y轴位置
+ax.xaixs.set_ticks_position('bottom')
+
+ax.yaixs.set_ticks_position('left')
+
+挪动x轴在 -1的位置
+ax.spines['right'].set_positon('data',-1). # outward axes 定位到百分只多少的位置
+ax.spines['bottom'].set_positon('data',0)
+
+
+题纲
+
+基本用法
+
+
+
+坐标轴
+图例  区分图像不同的数据
+
+loc best:自动找到最佳位置
+
+handles =[] 中括号的形式， 可以放第一条线 ，第二条线，指定每条线的。
+如果使用 handles 需要传入逗号
+l1, = plt.plot()
+l2, = plt.plot()
+
+handels= [l1,l2,] labels=['a','b']
+
+
+标注：在图片中添加注释
+
+
+scatter s 点的大小  
+  
+    两种方式
+
+
+
+tick 能见度
+
+拿到 x y的lable
+for label in ax.get_xticklabels() + ax.get_yticklabels()
+
+把 lable 变大
+    label.set_fontsize(12)
+
+     label的框    facecolor 前景色，box的边框
+    label.set_bbox(dict(facecolor='white',edgecolor='None',alpha=0.7) 70% 透明
+    	alpha 透明度
+
+
+
+散点图
+   点的大小 使用默认color map   透明图 50%，
+   设置x轴范围，
+   隐藏刻度
+   plt.xticks()
+   np.random.normal(0,1,n)
+
+柱状图
+
+  np.random.uniform(0.5,1.0,n)
+
+  对齐方式
+  ha  横向
+  va  纵向
+
+打印图像
+subplot 多合一显示
+  figure
+
+图中图
+fig.add_axes([])
+
+主次坐标轴
+
+动画
+animation
+
+
+matplotlib	版本
+
+tiobe
+
+

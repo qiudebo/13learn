@@ -36,9 +36,17 @@ if __name__ == '__main__':
 
     ax.legend()
 
+    # 添加点和线
+    ax.scatter(1.5,0.20,s=50,color='r')
+    ax.plot([1,1],[0.15,0],'k--',lw=2.5)
+    #lw 线的宽度  黑色
+
+    #注解     横坐标 +30 坐标减30
+    ax.annotate('annotate', xy=(1.5,0.20), xytext=(2, 0.1),
+                arrowprops=dict(arrowstyle='->',facecolor='black'))
 
     # 图形填充
-    ax.fill(x,y,'b')
+    #ax.fill(x,y,'b')
     #plt.fill(x,y,'b')
 
 

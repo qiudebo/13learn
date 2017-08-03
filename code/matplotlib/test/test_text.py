@@ -29,4 +29,5 @@ if __name__ == "__main__":
                 arrowprops=dict(facecolor='black', shrink=0.05))
     ax.axis([0, 10, 0, 10])
 
+
     plt.show()
