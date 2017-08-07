@@ -1,0 +1,20 @@
+
+
+
+angularjs
+
+bower install angular#1.6.5 --save
+
+bower install angular-perfect-scrollbar --save
+
+bower install jquery.datetimepicker --save
+
+
+
+npm install gulp-concat
+npm install gulp-uglify
+npm install gulp-cssmin
+npm install  browser-sync
+npm install del
+
+

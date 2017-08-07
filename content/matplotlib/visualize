@@ -5,14 +5,9 @@
 vega  窗口函数  通道 图形状态
 
 
-
-
 可视化工具有哪些？
 
-
 鸢尾花数据集 -- 散点图
-
-
 
 
 如何将枯燥的数据呈现为 可视化的图和动画
@@ -21,30 +16,19 @@ vega  窗口函数  通道 图形状态
 
 炫酷的可视化
 
-
-
 交互式编程语言
 
-
-
 举例世界人口的变化
-
-
 
 配色
 
 数据是sql、excle、txt、csv等等格式
 
-
-
 用图形标记（如矩形，线条和符号）
 
 （坐标，颜色，大小）
 
-
 数据	定义，加载和解析数据进行可视化。
-
-
 
 图----
 
@@ -53,13 +37,11 @@ https://vega.github.io/vega/examples/histogram/
 
 散点图 饼图  折线图  堆积面积图  条形图  人口金字塔图   堆积条形图   分组条形图    人口金字塔  
 
-
 概率分布    直方图  概率密度 
 词云
 树图
 网络图
 地图
-
 
 gca 'get current axis'
 ax =plt.gca()
@@ -77,12 +59,9 @@ ax.yaixs.set_ticks_position('left')
 ax.spines['right'].set_positon('data',-1). # outward axes 定位到百分只多少的位置
 ax.spines['bottom'].set_positon('data',0)
 
-
 题纲
 
 基本用法
-
-
 
 坐标轴
 图例  区分图像不同的数据
@@ -99,12 +78,9 @@ handels= [l1,l2,] labels=['a','b']
 
 标注：在图片中添加注释
 
-
 scatter s 点的大小  
   
     两种方式
-
-
 
 tick 能见度
 
@@ -117,8 +93,6 @@ for label in ax.get_xticklabels() + ax.get_yticklabels()
      label的框    facecolor 前景色，box的边框
     label.set_bbox(dict(facecolor='white',edgecolor='None',alpha=0.7) 70% 透明
     	alpha 透明度
-
-
 
 散点图
    点的大小 使用默认color map   透明图 50%，
@@ -146,7 +120,6 @@ fig.add_axes([])
 
 动画
 animation
-
 
 matplotlib	版本
 

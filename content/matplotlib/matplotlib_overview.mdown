@@ -1,5 +1,9 @@
+
 Matplotlib是Python中最常用的可视化工具之一，可以非常方便的绘制大量的2D图表和一些基本的3D图表。
-Matplotlib的原作者John D. Hunter博士是一名神经生物学家,最早是为了可视化癫痫病人的脑皮层电波而研发，因为在函数的设计上参考了MATLAB，所以叫做Matplotlib。
+
+Matplotlib的原作者John D. Hunter博士是一名神经生物学家,最早是为了可视化癫痫病人的脑皮层电波而研发，
+因为在函数的设计上参考了MATLAB，所以叫做Matplotlib。
+
 Matplotlib首次发表于2007年，在开源和社区的推动下，现在在基于Python的各个科学计算领域都得到了广泛应用。
 
 ---
@@ -14,8 +18,18 @@ Matplotlib可以方便地制作线条图、饼图、柱状图以及其它专业�
 
 IPython 是 Python的一个增强版本。
 它在下列方面有所增强：命名输入输出、使用系统命令（shell commands）、排错（debug）能力。
-我们在命令行终端给 IPython 加上参数 -pylab （0.12 以后的版本是 --pylab）之后，就可以像 Matlab 或者 Mathematica 那样以交互的方式绘图。
+我们在命令行终端给 ipython 加上参数 --pylab 之后(ipython --pylab)，就可以像 Matlab 或者 Mathematica 那样以交互的方式绘图。
 
+
+## pyplot 模块
+matplotlib 的 pyplot 子库提供了和 matlab 类似的绘图 API，方便用户快速绘制2D图表。
+
+
+## pylab 模块 
+matplotlib 的 pylab 的模块，已经导入了matplotlib库与相关软件包（例如Numpy和Scipy)，可以直接使用相关库的功能。
+
+## 优缺点
+matplotlib这个绘图系统操作起来很复杂，和R的ggplot,lattice绘图相比显得望而却步，但是matplotlib的复杂给其带来了很强的定制性。
 ---
 
 这里将会探索 matplotlib 的常见用法。

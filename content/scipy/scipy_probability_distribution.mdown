@@ -1,0 +1,8 @@
+
+scipy基于numpy提供了更为丰富和高级的功能扩展，在统计、优化、插值、数值积分、时频转换等方面提供了大量的可用函数，基本覆盖了基础科学计算相关的问题。
+
+导入模块
+
+>  import numpy as np
+>  import scipy.stats as stats
+>  import scipy.optimize as opt

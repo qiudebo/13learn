@@ -1,0 +1,27 @@
+
+### 配置python环境变量
+windwos 环境变量path加入如下路径
+```
+C:\Python27;C:\Python27\Scripts
+```
+下载pip到本地
+https://pypi.python.org/pypi/pip
+
+
+
+pip-9.0.1.tar.gz
+
+解压缩 ，建议放到C盘根目录下：
+
+在windows cmd命令行 执行如下代码即可：
+```
+cd C:\pip-9.0.1
+
+python setup.py install
+```
+
+然后 在cmd中pip install numpy 即可。
+
+
+
+setuptools安装
