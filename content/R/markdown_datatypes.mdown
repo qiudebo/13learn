@@ -1,0 +1,23 @@
+
+
+
+R 的数据类型有几种？
+R（S 语言）没有标量，它通过使用各种类型的向量来存储数据。常用的数据类型（class）
+有：
+常用数据类型
+类型 说明
+1 字符（charactor） 它们常常被引号包围
+2 数字（numeric） 实数向量
+3 整数（integer） 整数向量
+4 逻辑（logical） 逻辑向量（TRUE=T、FALSE=F）
+5 复数（complex） 复数a
+6 列表（list） S 对象的向量
+7 因子（factor） 常用于标记样本
+
+
+
+data frame 是什么？
+data frame（数据框）可以理解是一个松散的数据集。它可以是由不同类型的列（数字、因
+子、字符等）组成的类矩阵（matrix-like）。
+
+https://cran.r-project.org/doc/contrib/Liu-FAQ.pdf
