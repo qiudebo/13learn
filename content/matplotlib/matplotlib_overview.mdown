@@ -21,6 +21,8 @@ IPython 是 Python的一个增强版本。
 我们在命令行终端给 ipython 加上参数 --pylab 之后(ipython --pylab)，就可以像 Matlab 或者 Mathematica 那样以交互的方式绘图。
 
 
+绘图的三大系统：pyplot，pylab，面向对象
+
 ## pyplot 模块
 matplotlib 的 pyplot 子库提供了和 matlab 类似的绘图 API，方便用户快速绘制2D图表。
 
