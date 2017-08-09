@@ -1,0 +1,63 @@
+
+R可以在CRAN（Comprehensive R Archive Network）<http://cran.r-project.org>上免费下载。Linux、Mac和Windows都有相应编译好的二进制版本。根据你所选择平台的安装说明进行安装即可。
+
+---
+
+### 在线环境
+
+你不需要设置自己的环境来开始学习R编程语言,我们已经设置了在线R编程环境。这样你可以快速学习本课程，并进行在线实验。点击下面红色的Try it按钮，尝试运行一下以下的实例：
+
+```
+# Print Hello 13learn. 
+print("Hello 13learn") 
+ 
+# Add two numbers. 
+print(23.9 + 11.6)
+```
+
+**注：**对于本教程中给出的大多数示例，均可以try it。
+
+---
+
+### Windows安装
+
+您可以从https://cran.r-project.org/网站上下载R安装程序R-3.4.1-win.exe，双击安装即可。
+安装后，您可以找到R图标，单击此图标会打开RGUI，便可以在图形用户界面进行交互式编程。
+
+---
+
+### Linux安装
+
+安装过程:下载R 语言的文件，采用编译的方式安装。R 语言的最新版本的下载地址为：http://www.r-project.org/将R-3.4.1.tar.gz文件解压至R 安装目录，执行如下命令：
+```
+./configure --disable-nls
+make
+make install
+```
+由于环境中无LATEX 环境，因此在编译文档时会有若干文档编译失败的警告信息，但不影响R 的安装及使用。
+
+**configure** 的细节
+
+在./configure 的过程中，需要设置一些参数以适应安装的进行。有一些参数对于特定需求比较重要（比如需要对性能进行有效提升），故将选取一部分进行解释：
+
+* --disable-nls 表示关闭本地语言支持，即只安装英文环境。此参数要求在更新中设置。
+* --enable-R-shlib 表示将R 作为动态库进行安装，这样有一些依赖于R 动态库的R 包就可以进行安装，比如Rserve 等，但会导致20%左右的性能下降。此参数无需设置。
+* --with-blas="foo" 表示使用系统中的BLAS 库，而不是R 自带的BLAS 库。指定系统中的高性能BLAS 库，能有效提高R 在线性代数有关的计算速度，甚至由于有些BLAS库支持多线程计算，R 也可以由此获得多线程计算的能力。此参数可无需设
+置。
+
+编译安装的方式依赖于系统环境，比如Cario 图形设备的使用，Intel MKT 库的使用，如有“需要”，细节可参考[R Installation and Administration](https://cran.r-project.org/doc/manuals/R-admin.pdf)
+
+**注：**为了方便也可以使用yum进行安装，命令如下：
+```
+yum install R
+```
+
+---
+
+### Mac 安装
+
+Mac安装比较简单，使用brew安装即可，命令如下：
+```
+brew install R
+```
+

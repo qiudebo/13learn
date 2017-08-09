@@ -1,7 +1,16 @@
-
+安装R 的􁢙􁊅包
+2.1 一般包的安装
+正常使用在线安装模式，这样可以保证安装R 包的过程中，各个包满足依赖关系，比如有
+些包依赖于Rcpp 包，即使用hadoop 帐号打开R 环境，在命令行下执行：
+1 install.packages('kernlab')
+2 install.packages('klaR')
+3 install.packages('e1071')
+4 install.packages('arules')
+5 install.packages('arulesSequences')
+6 install.packages('apcluster
 
 
 ||||
 |-|-|-|
 |决策树|Decision Tree|install.packages("party")|
-
+|随机森林|Random Forest|install.packages("randomForest")|
