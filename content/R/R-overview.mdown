@@ -1,10 +1,15 @@
 
 
-R是一个有着强大统计分析及作图功能的软件系统，在GNU协议GeneralPublic Licence下免费发行, 最先是由Ross Ihaka和Robert Gentleman共同创立, 现在由R开发核心小组(R Development Core Team)维护, 他们完全自愿、工作努力负责，并将全球优秀的统计应用软件打包提供给我们共享。
+R是一个有着强大统计分析及作图功能的软件系统，在GNU协议GeneralPublic Licence下免费发行, 最先是由是由新西兰奥克兰大学统计学系
+的Ross Ihaka和Robert Gentleman共同创立, 现在由R开发核心小组(R Development Core Team)维护, 他们完全自愿、工作努力负责，并将全球优秀的统计应用软件打包提供给我们共享。
 
 ### R的演变
 
 R可以看作是贝尔实验室(Bell Laboratories)的Rick Becker, JohnChambers和Allan Wilks开发的S语言的一种实现或形式. 因此, R是一种软件也可以说是一种语言。
+
+###  CRAN
+
+CRAN 是 Comprehensive R Archive Network 的简写，顾名思义：是拥有同一资料，包括R 的发布版本，包，文档和源代码的网络集合。
 
 ---
 
@@ -30,3 +35,11 @@ R可以看作是贝尔实验室(Bell Laboratories)的Rick Becker, JohnChambers�
 8. 可扩展: R是开发新的交互式数据分析方法一个非常好的工具。我们可以编制自己的函数来扩展现有的Ｒ语言, 或制作相对独立的统计分析包。
 
 ---
+
+### 如何获得帮助
+
+R 的帮助系统非常强大，可以直接使用 "?topic" 或 help(topic) 来获取 topic 的帮助信息；
+也可使用 help.search("topic") 来搜索帮助系统或者??topic。
+
+---
+

@@ -7,7 +7,7 @@ R可以在CRAN（Comprehensive R Archive Network）<http://cran.r-project.org>�
 
 你不需要设置自己的环境来开始学习R编程语言,我们已经设置了在线R编程环境。这样你可以快速学习本课程，并进行在线实验。点击下面红色的Try it按钮，尝试运行一下以下的实例：
 
-```
+```r_tryit
 # Print Hello 13learn. 
 print("Hello 13learn") 
  

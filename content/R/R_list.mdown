@@ -1,0 +1,90 @@
+列表（list）是R的数据类型中最为复杂的一种。一般来说，列表就是一些对象（或成分，component）的有序集合。列表允许你整合若干（可能无关的）对象到单个对象名下。例如，某个列表中可能是若干向量、矩阵、数据框，甚至其他列表的组合。
+
+---
+
+### 创建列表
+使用函数list()创建列表：
+
+```r_tryit
+list_data <- list("Red", "Green", c(21,32,11), TRUE, 51.23, 119.1)
+print(list_data)
+```
+
+上例创建了一个由字符串、数值型向量、布尔值和数值组成的列表。
+
+### 为列表添加标签
+可以为列表元素指定列名，并且可以使用这些列名访问它们。
+
+```r_tryit
+list_data <- list(c("Jan","Feb","Mar"), matrix(c(3,9,5,1,-2,8), nrow = 2),list("green",12.3))
+names(list_data) <- c("1st Quarter", "A_Matrix", "A Inner list")
+print(list_data)
+```
+
+---
+
+### 访问列表
+你可以通过在方括号中指定元素的索引或列名来访问列表中的元素
+```r_tryit
+list_data <- list(c("Jan","Feb","Mar"), matrix(c(3,9,5,1,-2,8), nrow = 2),list("green",12.3))
+names(list_data) <- c("1st Quarter", "A_Matrix", "A Inner list")
+# 访问列表第一个元素
+print(list_data[1])
+# 访问列表第三个元素
+print(list_data[3])
+# 使用标签名访问列表
+print(list_data$A_Matrix)
+```
+
+---
+
+### 操作列表元素
+我们只能在列表的末尾添加和删除元素，但我们可以更新任何元素。
+```r_tryit
+list_data <- list(c("Jan","Feb","Mar"), matrix(c(3,9,5,1,-2,8), nrow = 2),list("green",12.3))
+names(list_data) <- c("1st Quarter", "A_Matrix", "A Inner list")
+# 为增加元素
+list_data[4] <- "New element"
+print(list_data[4])
+# 删除最后一个元素
+list_data[4] <- NULL
+# 打印第四个元素
+print(list_data[4])
+# 更新第三个元素
+list_data[3] <- "updated element"
+print(list_data[3])
+```
+
+---
+
+### 合并列表
+可以使用list()函数中将许多列表合并到一个列表中。
+```r_tryit
+# 创建两个列表
+list1 <- list(1,2,3)
+list2 <- list("Sun","Mon","Tue")
+# 合并两个列表
+merged.list <- c(list1,list2)
+# 打印合并的列表
+print(merged.list)
+```
+
+---
+
+### 将列表转换为向量
+我们使用unlist()函数将列表转换成向量，然后进行向量计算。
+```r_tryit
+# 创建列表
+list1 <- list(1:5)
+print(list1)
+list2 <-list(10:14)
+print(list2)
+# 将列表转换成向量
+v1 <- unlist(list1)
+v2 <- unlist(list2)
+print(v1)
+print(v2)
+# 两个向量相加
+result <- v1+v2
+print(result)
+```

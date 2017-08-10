@@ -1,16 +1,52 @@
-安装R 的􁢙􁊅包
-2.1 一般包的安装
-正常使用在线安装模式，这样可以保证安装R 包的过程中，各个包满足依赖关系，比如有
-些包依赖于Rcpp 包，即使用hadoop 帐号打开R 环境，在命令行下执行：
-1 install.packages('kernlab')
-2 install.packages('klaR')
-3 install.packages('e1071')
-4 install.packages('arules')
-5 install.packages('arulesSequences')
-6 install.packages('apcluster
+R提供了大量开箱即用的功能，但它很多高级功能是通过可选模块的下载和安装来实现的。目前R有2500多个包（package）,这些包提供了横跨各种领域、数量惊人的新功能，包括分析地理数据、处理蛋白质质谱，甚至是心理测验分析的功能。用户贡献模块可从<http://cran.r-project.org/web/packages>下载。
+
+### 什么是包
+包是R函数、数据、预编译代码以一种定义完善的格式组成的集合。计算机上存储包的目录称为库（library）。
+函数.libPaths()能够显示库所在的位置
+```
+.libPaths()
+```
+函数library()则可以显示库中有哪些包
+```
+library()
+```
+
+R自带了一系列默认包（包括base、datasets、utils、grDevices、graphics、stats以及methods），它们提供了种类繁多的默认函数和数据集。其他包可通过下载来进行安装。安装好以后，它们必须被载入到会话中才能使用。
+命令search()可以告诉你哪些包已加载并可使用
+```
+search()
+```
+
+### 安装R包
+有两种方法来安装的R包。 一种是使用命令在线安装，另一种是将软件包下载到本地系统并手动安装。
+### 在线安装
+使用在线安装模式，这样可以保证安装 R 包的过程中，各个包满足依赖关系，比如有些包依赖于Rcpp 包。在命令行下执行：
+```
+install.packages('arules')
+```
+
+### 手动安装
+打开该链接[R包](https://cran.r-project.org/web/packages/available_packages_by_name.html)下载需要的包(.zip)到本地，然后再R软件环境运行一下命令进行手动安装。
+
+本例安装关联规则的算法包
+```
+install.packages(c:// arules_1.5-2.zip, repos = NULL, type = "source")
+```
+**注：** file_name_with_path为本地路径(file_name_with_path=c:// arules_1.5-2.zip)
 
 
-||||
-|-|-|-|
-|决策树|Decision Tree|install.packages("party")|
-|随机森林|Random Forest|install.packages("randomForest")|
+### 加载包
+在使用R包的函数之前，还需要使用library()命令载入这个包。
+```
+library("arules")
+```
+
+### 使用包
+下面加载arules包自带的数据集，调用Apriori算法，挖掘频繁项集。
+```
+library("arules")
+data("Adult")
+rules <- apriori(Adult, parameter = list(supp = 0.5, conf = 0.9, target = "rules"))
+```
+
+

@@ -1,0 +1,127 @@
+
+### data frame 是什么？
+
+data frame（数据框）可以理解是一个松散的数据集。它可以是由不同类型的列（数字、因子、字符等）组成的类矩阵（matrix-like）。它与前面讲的矩阵与二维数组形式上是类似的, 也是二维的，也有维数这个属性。数据框将是你在R中最常处理的数据结构。
+
+---
+
+### 创建数据框
+
+```r.tryit
+emp.data <- data.frame(
+   emp_id = c (1:5),
+   emp_name = c("Rick","Dan","Michelle","Ryan","Gary"),
+   salary = c(623.3,515.2,611.0,729.0,843.25),
+   start_date = as.Date(c("2014-01-01", "2015-09-23", "2016-11-15", "2016-05-11","2017-03-27")),
+   stringsAsFactors = FALSE
+)
+# Print the data frame
+print(emp.data)
+```
+
+---
+
+### 查看数据框的结构
+
+```r.tryit
+str(emp.data)
+```
+
+---
+
+### 适用于数据框的函数
+
+在上一小节中我们所讨论的关于矩阵的统计计算函数max(), min(),median(), var(), sd(), sum(), cumsum(), cumprod(), cummax(),cummin(), cov(), cor()同样适用于数据框, 意义也相同。
+显示主要的描述性统计量
+
+```r.tryit
+summary(emp.data)
+```
+
+这里也可以通过R内嵌的另一个数据集Puromycin来说明summary( )的使用。
+```r.tryit
+summary(Puromycin)
+```
+
+---
+
+### 数据框的下标与子集的提取
+
+数据框的下标与子集的提取与矩阵基本相同。不同的是，对于列我们可以使用变量的名称。
+
+```r.tryit
+result <- data.frame(emp.data$emp_name,emp.data$salary)
+print(result)
+```
+
+提取一个子集，先提取前两行和所有列
+
+```r.tryit
+# Extract first two rows.
+result <- emp.data[1:2,]
+print(result)
+```
+
+提取一个子集，例如提取第3,5行，第2,4列
+```r.tryit
+# Extract 3rd and 5th row with 2nd and 4th column.
+result <- emp.data[c(3,5),c(2,4)]
+print(result)
+```
+
+常使用变量名称来指定列的位置，上面的命令等价于
+```r.tryit
+result <- emp.data[c(3,5),c("emp_name","start_date")]
+print(result)
+```
+一个数据框的变量对应了数据框的一列, 如果变量有名称, 则可直接使用“数据框名$变量名”这种格式指向对应的列. 例如
+```r.tryit
+emp.data$emp_name
+```
+等价于
+```r.tryit
+emp.data[,2]
+```
+提取满足条件的子集
+```r.tryit
+subset(emp.data, emp_name == "Michelle" & start_date > '2012-01-01')
+```
+
+---
+
+### 数据框中添加新变量
+
+新增一列
+
+```r.tryit
+emp.data$dept <- c("IT","Operations","IT","HR","Finance")
+v <- emp.data
+print(v)
+```
+
+新增多行
+```r.tryit
+# Create the second data frame
+emp.newdata <- 	data.frame(
+   emp_id = c (6:8), 
+   emp_name = c("Rasmi","Pranab","Tusar"),
+   salary = c(578.0,722.5,632.8), 
+   start_date = as.Date(c("2013-05-21","2013-07-30","2016-06-17")),
+   dept = c("IT","Operations","Fianance"),
+   stringsAsFactors = FALSE
+)
+
+# Bind the two data frames.
+emp.finaldata <- rbind(emp.data,emp.newdata)
+print(emp.finaldata)
+```
+也可以使用with()函数新增列
+```r.tryit
+emp.finaldata$salary_avg <- with(emp.data, mean(salary))
+print(emp.finaldata)
+```
+也可以使用transform()函数, 且可一次性定义多个变量即多列
+```r.tryit
+emp.finaldata <- transform(emp.finaldata, salary_max = max(salary),salary_min = min(salary))
+print(emp.finaldata)
+```
