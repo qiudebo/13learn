@@ -7,7 +7,7 @@ data frame（数据框）可以理解是一个松散的数据集。它可以是�
 
 ### 创建数据框
 
-```r.tryit
+```r_tryit
 emp.data <- data.frame(
    emp_id = c (1:5),
    emp_name = c("Rick","Dan","Michelle","Ryan","Gary"),
@@ -23,7 +23,14 @@ print(emp.data)
 
 ### 查看数据框的结构
 
-```r.tryit
+```r_tryit
+emp.data <- data.frame(
+   emp_id = c (1:5),
+   emp_name = c("Rick","Dan","Michelle","Ryan","Gary"),
+   salary = c(623.3,515.2,611.0,729.0,843.25),
+   start_date = as.Date(c("2014-01-01", "2015-09-23", "2016-11-15", "2016-05-11","2017-03-27")),
+   stringsAsFactors = FALSE
+)
 str(emp.data)
 ```
 
@@ -34,12 +41,19 @@ str(emp.data)
 在上一小节中我们所讨论的关于矩阵的统计计算函数max(), min(),median(), var(), sd(), sum(), cumsum(), cumprod(), cummax(),cummin(), cov(), cor()同样适用于数据框, 意义也相同。
 显示主要的描述性统计量
 
-```r.tryit
+```r_tryit
+emp.data <- data.frame(
+   emp_id = c (1:5),
+   emp_name = c("Rick","Dan","Michelle","Ryan","Gary"),
+   salary = c(623.3,515.2,611.0,729.0,843.25),
+   start_date = as.Date(c("2014-01-01", "2015-09-23", "2016-11-15", "2016-05-11","2017-03-27")),
+   stringsAsFactors = FALSE
+)
 summary(emp.data)
 ```
 
 这里也可以通过R内嵌的另一个数据集Puromycin来说明summary( )的使用。
-```r.tryit
+```r_tryit
 summary(Puromycin)
 ```
 
@@ -49,41 +63,91 @@ summary(Puromycin)
 
 数据框的下标与子集的提取与矩阵基本相同。不同的是，对于列我们可以使用变量的名称。
 
-```r.tryit
+```r_tryit
+emp.data <- data.frame(
+   emp_id = c (1:5),
+   emp_name = c("Rick","Dan","Michelle","Ryan","Gary"),
+   salary = c(623.3,515.2,611.0,729.0,843.25),
+   start_date = as.Date(c("2014-01-01", "2015-09-23", "2016-11-15", "2016-05-11","2017-03-27")),
+   stringsAsFactors = FALSE
+)
 result <- data.frame(emp.data$emp_name,emp.data$salary)
 print(result)
 ```
 
 提取一个子集，先提取前两行和所有列
 
-```r.tryit
+```r_tryit
+emp.data <- data.frame(
+   emp_id = c (1:5),
+   emp_name = c("Rick","Dan","Michelle","Ryan","Gary"),
+   salary = c(623.3,515.2,611.0,729.0,843.25),
+   start_date = as.Date(c("2014-01-01", "2015-09-23", "2016-11-15", "2016-05-11","2017-03-27")),
+   stringsAsFactors = FALSE
+)
 # Extract first two rows.
 result <- emp.data[1:2,]
 print(result)
 ```
 
 提取一个子集，例如提取第3,5行，第2,4列
-```r.tryit
+```r_tryit
+emp.data <- data.frame(
+   emp_id = c (1:5),
+   emp_name = c("Rick","Dan","Michelle","Ryan","Gary"),
+   salary = c(623.3,515.2,611.0,729.0,843.25),
+   start_date = as.Date(c("2014-01-01", "2015-09-23", "2016-11-15", "2016-05-11","2017-03-27")),
+   stringsAsFactors = FALSE
+)
 # Extract 3rd and 5th row with 2nd and 4th column.
 result <- emp.data[c(3,5),c(2,4)]
 print(result)
 ```
 
 常使用变量名称来指定列的位置，上面的命令等价于
-```r.tryit
+```r_tryit
+emp.data <- data.frame(
+   emp_id = c (1:5),
+   emp_name = c("Rick","Dan","Michelle","Ryan","Gary"),
+   salary = c(623.3,515.2,611.0,729.0,843.25),
+   start_date = as.Date(c("2014-01-01", "2015-09-23", "2016-11-15", "2016-05-11","2017-03-27")),
+   stringsAsFactors = FALSE
+)
 result <- emp.data[c(3,5),c("emp_name","start_date")]
 print(result)
 ```
-一个数据框的变量对应了数据框的一列, 如果变量有名称, 则可直接使用“数据框名$变量名”这种格式指向对应的列. 例如
-```r.tryit
+一个数据框的变量对应了数据框的一列, 如果变量有名称, 则可直接使用“数据框名$变量名”这种格式指向对应的列。例如
+```r_tryit
+emp.data <- data.frame(
+   emp_id = c (1:5),
+   emp_name = c("Rick","Dan","Michelle","Ryan","Gary"),
+   salary = c(623.3,515.2,611.0,729.0,843.25),
+   start_date = as.Date(c("2014-01-01", "2015-09-23", "2016-11-15", "2016-05-11","2017-03-27")),
+   stringsAsFactors = FALSE
+)
 emp.data$emp_name
 ```
 等价于
-```r.tryit
+```r_tryit
+emp.data <- data.frame(
+   emp_id = c (1:5),
+   emp_name = c("Rick","Dan","Michelle","Ryan","Gary"),
+   salary = c(623.3,515.2,611.0,729.0,843.25),
+   start_date = as.Date(c("2014-01-01", "2015-09-23", "2016-11-15", "2016-05-11","2017-03-27")),
+   stringsAsFactors = FALSE
+)
 emp.data[,2]
 ```
 提取满足条件的子集
-```r.tryit
+
+```r_tryit
+emp.data <- data.frame(
+   emp_id = c (1:5),
+   emp_name = c("Rick","Dan","Michelle","Ryan","Gary"),
+   salary = c(623.3,515.2,611.0,729.0,843.25),
+   start_date = as.Date(c("2014-01-01", "2015-09-23", "2016-11-15", "2016-05-11","2017-03-27")),
+   stringsAsFactors = FALSE
+)
 subset(emp.data, emp_name == "Michelle" & start_date > '2012-01-01')
 ```
 
@@ -91,18 +155,37 @@ subset(emp.data, emp_name == "Michelle" & start_date > '2012-01-01')
 
 ### 数据框中添加新变量
 
-新增一列
+**新增一列**
 
-```r.tryit
+使用新的列名称添加列向量
+```r_tryit
+emp.data <- data.frame(
+   emp_id = c (1:5),
+   emp_name = c("Rick","Dan","Michelle","Ryan","Gary"),
+   salary = c(623.3,515.2,611.0,729.0,843.25),
+   start_date = as.Date(c("2014-01-01", "2015-09-23", "2016-11-15", "2016-05-11","2017-03-27")),
+   stringsAsFactors = FALSE
+)
 emp.data$dept <- c("IT","Operations","IT","HR","Finance")
 v <- emp.data
 print(v)
 ```
 
-新增多行
-```r.tryit
+**新增多行**
+
+使用rbind()函数新增多行
+```r_tryit
+emp.data <- data.frame(
+   emp_id = c (1:5),
+   emp_name = c("Rick","Dan","Michelle","Ryan","Gary"),
+   salary = c(623.3,515.2,611.0,729.0,843.25),
+   start_date = as.Date(c("2014-01-01", "2015-09-23", "2016-11-15", "2016-05-11","2017-03-27")),
+   stringsAsFactors = FALSE
+)
+emp.data$dept <- c("IT","Operations","IT","HR","Finance")
+
 # Create the second data frame
-emp.newdata <- 	data.frame(
+emp.newdata <- data.frame(
    emp_id = c (6:8), 
    emp_name = c("Rasmi","Pranab","Tusar"),
    salary = c(578.0,722.5,632.8), 
@@ -115,13 +198,61 @@ emp.newdata <- 	data.frame(
 emp.finaldata <- rbind(emp.data,emp.newdata)
 print(emp.finaldata)
 ```
+**新增列**
+
 也可以使用with()函数新增列
-```r.tryit
+```r_tryit
+emp.data <- data.frame(
+   emp_id = c (1:5),
+   emp_name = c("Rick","Dan","Michelle","Ryan","Gary"),
+   salary = c(623.3,515.2,611.0,729.0,843.25),
+   start_date = as.Date(c("2014-01-01", "2015-09-23", "2016-11-15", "2016-05-11","2017-03-27")),
+   stringsAsFactors = FALSE
+)
+emp.data$dept <- c("IT","Operations","IT","HR","Finance")
+
+# Create the second data frame
+emp.newdata <- data.frame(
+   emp_id = c (6:8), 
+   emp_name = c("Rasmi","Pranab","Tusar"),
+   salary = c(578.0,722.5,632.8), 
+   start_date = as.Date(c("2013-05-21","2013-07-30","2016-06-17")),
+   dept = c("IT","Operations","Fianance"),
+   stringsAsFactors = FALSE
+)
+
+# Bind the two data frames.
+emp.finaldata <- rbind(emp.data,emp.newdata)
+
 emp.finaldata$salary_avg <- with(emp.data, mean(salary))
 print(emp.finaldata)
 ```
+**新增多列**
+
 也可以使用transform()函数, 且可一次性定义多个变量即多列
-```r.tryit
+```r_tryit
+emp.data <- data.frame(
+   emp_id = c (1:5),
+   emp_name = c("Rick","Dan","Michelle","Ryan","Gary"),
+   salary = c(623.3,515.2,611.0,729.0,843.25),
+   start_date = as.Date(c("2014-01-01", "2015-09-23", "2016-11-15", "2016-05-11","2017-03-27")),
+   stringsAsFactors = FALSE
+)
+emp.data$dept <- c("IT","Operations","IT","HR","Finance")
+
+# Create the second data frame
+emp.newdata <- data.frame(
+   emp_id = c (6:8), 
+   emp_name = c("Rasmi","Pranab","Tusar"),
+   salary = c(578.0,722.5,632.8), 
+   start_date = as.Date(c("2013-05-21","2013-07-30","2016-06-17")),
+   dept = c("IT","Operations","Fianance"),
+   stringsAsFactors = FALSE
+)
+
+# Bind the two data frames.
+emp.finaldata <- rbind(emp.data,emp.newdata)
+
 emp.finaldata <- transform(emp.finaldata, salary_max = max(salary),salary_min = min(salary))
 print(emp.finaldata)
 ```

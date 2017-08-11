@@ -10,7 +10,7 @@ R可以在CRAN（Comprehensive R Archive Network）<http://cran.r-project.org>�
 ```r_tryit
 # Print Hello 13learn. 
 print("Hello 13learn") 
- 
+
 # Add two numbers. 
 print(23.9 + 11.6)
 ```
