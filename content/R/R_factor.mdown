@@ -1,0 +1,101 @@
+
+类别变量和有序类别变量在R中称为因子。因子在R中非常重要，因为它决定了数据的分析方式以及如何进行可视化。
+常用于标记样本
+
+**语法**
+```
+factor(x, levels = sort(unique(x), na.last = TRUE),labels = levels, exclude = NA, ordered = is.ordered(x))
+```
+**参数说明：**
+
+*  levels 用来指定因子的类别；
+*  labels 用来指定类别的名称；
+*  exclude 表示从向量x中剔除的类别值；
+*  ordered 是一个逻辑型选项, 用来指定因子的类别是否有序；
+*  x 可以是数值型向量或字符型向量, 这样对应的因子也就称为数值型因子或字符型因子。
+
+### 使用factor() 函数将字符型向量转换成因子
+```r_tryit
+# Create a vector as input.
+data <- c("East","West","East","North","North","East","West","West","West","East","North")
+
+print(data)
+print(is.factor(data))
+
+# Apply the factor function.
+factor_data <- factor(data)
+
+print(factor_data)
+print(is.factor(factor_data))
+```
+
+### 对数据框使用因子函数
+
+```r_tryit
+# Create the vectors for data frame.
+height <- c(132,151,162,139,166,147,122)
+weight <- c(48,49,66,53,67,52,40)
+gender <- c("male","male","female","female","male","female","male")
+
+# Create the data frame.
+input_data <- data.frame(height,weight,gender)
+print(input_data)
+
+# Test if the gender column is a factor.
+print(is.factor(input_data$gender))
+
+# Print the gender column so see the levels.
+print(input_data$gender)
+```
+
+### 因子排序
+
+对于字符型向量，因子的水平默认依字母顺序创建，你可以通过指定levels选项来覆盖默认排序。
+
+```r_tryit
+data <- c("East","West","East","North","North","East","West","West","West","East","North")
+# Create the factors
+factor_data <- factor(data)
+print(factor_data)
+
+# Apply the factor function with required order of the level.
+new_order_data <- factor(factor_data,levels = c("East","West","North"))
+print(new_order_data)
+```
+
+### 使用函数gl()能产生规则的因子序列
+
+语法
+```
+gl(k, n, labels)
+```
+以下是所使用的参数的说明:
+
+* k表示类别的个数;
+* n表示同一类别重复的次数;
+* labels是对应因子的标签向量;
+
+```r_tryit
+v <- gl(3, 4, labels = c("Tampa", "Seattle","Boston"))
+print(v)
+```
+
+### table()函数
+
+用table()函数统计因子各类别的出现次数（称为频数或频率）。 也可以对一般的向量统计每个不同元素的出现次数
+
+```r_tryit
+sex <- c("男", "女", "男", "男",  "女")
+levels(sex)
+table(sex)
+```
+
+### tapply()函数
+可以按照因子分组然后每组计算另一变量的概括统计
+
+```r_tryit
+sex <- c("男", "女", "男", "男",  "女")
+h <- c(165, 170, 168, 172, 159)
+tapply(h, sex, mean)
+```
+这里第一自变量h与与第二自变量sex是等长的， 对应元素分别为同一人的身高和性别， tapply()函数分男女两组计算了身高平均值。

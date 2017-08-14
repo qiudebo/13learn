@@ -28,7 +28,7 @@ print(23.9 + 11.6)
 
 ### Linux安装
 
-安装过程:下载R 语言的文件，采用编译的方式安装。R 语言的最新版本的下载地址为：http://www.r-project.org/将R-3.4.1.tar.gz文件解压至R 安装目录，执行如下命令：
+安装过程:下载R 语言的文件，采用编译的方式安装。R 语言的最新版本的下载地址为：<http://www.r-project.org/>将R-3.4.1.tar.gz文件解压至R 安装目录，执行如下命令：
 ```
 ./configure --disable-nls
 make
