@@ -1,0 +1,110 @@
+Currency Exchange Rate Forecasting with ARIMA and STL
+========================================================
+
+by Yanchang Zhao
+
+RDataMining.com http://www.rdatamining.com/
+
+2 July 2014
+
+
+
+This example shows time series forecasting of Euro-AUD exchange rates with the with ARIMA and STL models. The data used are historical currency exchange rates from January 1999 to June 2014 provided by the European Central Bank.
+
+1. Downloading data from European Central Bank
+-------------------------------
+
+Download data from the European Central Bank at <http://www.ecb.europa.eu/stats/exchange/eurofxref/html/index.en.html>.
+```
+url <- "http://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.zip"
+download.file(url, "eurofxref-hist.zip")
+```
+
+
+2. Checking data
+-------------------------------
+
+```{r}
+rates <- read.csv(unz("eurofxref-hist.zip", "eurofxref-hist.csv"), 
+                  header=T)
+rates[1:2, ]
+str(rates$Date)
+## convert into date format
+rates$Date <- as.Date(rates$Date, "%Y-%m-%d")
+str(rates$Date)
+range(rates$Date)
+rates <- rates[order(rates$Date), ]
+```
+
+
+<!--
+Fill missing data
+
+```
+start.date <- min(rates$Date)
+end.date <- max(rates$Date)
+dates <- setdiff(start.date : end.date, rates$Date)
+rates <- rates[order(rates$Date), ]
+```
+-->
+
+
+```{r}
+## plot time series
+plot(rates$Date, rates$AUD, type="l")
+```
+
+
+3. Forecasting with ARIMA
+-------------------------------
+
+The code below shows that there are no data for weekends or public holidays.
+```{r}
+head(rates$Date, 20)
+years <- format(rates$Date, "%Y")
+tab <- table(years)
+tab
+## number of days per year after removing 2014
+mean(tab[1:(length(tab)-1)]) 
+```
+Based on above result, there are about 256 values per year, so the windows size is set to 256 in time series analysis in section 5. Another way is to fill weekends and public holidays with values in the previous populated days.
+
+
+```{r, echo=F, warning=F, message=F}
+library(forecast)
+```
+
+```{r}
+source("forecast.R") ## see code file in section 5
+result.arima <- forecastArima(rates, n.ahead=90)
+source("plotForecastResult.R") ## see code file in section 5
+plotForecastResult(result.arima, title="Exchange rate forecasting with ARIMA")
+```
+
+
+4. Forecasting with STL
+-------------------------------
+
+```{r}
+result.stl <- forecastStl(rates, n.ahead=90)
+plotForecastResult(result.stl, title="Exchange rate forecasting with STL")
+## exchange rate in 2014
+result <- subset(result.stl, date >= "2014-01-01" )
+plotForecastResult(result, title="Exchange rate forecasting with STL (2014)")
+```
+
+5. Functions
+-------------------------------
+Below are two source files used in section 3 and 4.
+
+### File *forecast.R*
+It provides functions for forecasting with ARIMA and STL.
+```{r, comment=NA, echo=F}
+source("forecast.R", echo=T, max.deparse.length=1000)
+```
+
+### File *plotForecastResult.R*
+It provides a function for ploting time series forecasting result, incl. trend, forecast and bounds.
+```{r, comment=NA, echo=F}
+source("plotForecastResult.R", echo=T, max.deparse.length=1000)
+```

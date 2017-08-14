@@ -1,0 +1,17 @@
+本章节演示R语言k-means聚类
+
+```
+newiris <- iris
+newiris$Species <- NULL
+# 使用kmeans将鸢尾花聚为3类、
+(kc <- kmeans(newiris, 3))
+#根据鸢尾花花种对比聚类的结果
+table(iris$Species, kc$cluster)
+```
+
+画散点图并画出聚类的中心。
+
+```
+plot(newiris[c("Sepal.Length", "Sepal.Width")], col=kc$cluster)
+points(kc$centers[,c("Sepal.Length", "Sepal.Width")], col=1:3, pch=8, cex=2)
+```

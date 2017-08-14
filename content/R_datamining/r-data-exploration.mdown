@@ -1,0 +1,49 @@
+
+本章节演示使用R语言自带的鸢尾花数据集进行基本的数据探索。
+鸢尾花（Iris）数据集，改数据集R软件默认安装的数据集，也可以从【加州大学欧文分校（UCI）的机器学习库】（http://archive.ics.uci.edu/ml/index.php）中得到。
+鸢尾花数据集包含150种鸢尾花的信息，每50种取自三个鸢尾花种之一：Setosa、Versicolour和Virginica。每个花的特征用下面5种属性描述。
+
+1. 萼片的长度
+2. 萼片的宽度
+3. 花瓣的长度
+4. 花瓣的宽度
+5. 类（Setosa、Versicolour和Virginica）
+
+**注：**以上长度均为厘米
+
+显示鸢尾花数据集的纬度
+```r_tryit
+dim(iris)
+```
+显示鸢尾花数据集的变量名或列名
+```r_tryit
+names(iris)
+```
+显示属性信息：变量名、行向量、数据集类型
+```r_tryit
+attributes(iris)
+```
+取鸢尾花数据集的前5行
+```r_tryit
+iris[1:5,]
+```
+取鸢尾花数据集列Sepal.Length的前10行
+```r_tryit
+iris[1:10, "Sepal.Length"]
+```
+查看鸢尾花数据集每个变量的数据分布或者描述性统计量
+以下显示每种鸢尾花的各个变量（长度和宽度）的最小值、下四分位数、中值、上四分位数、最大值。
+
+```r_tryit
+summary(iris)
+```
+计算鸢尾花数据集变量iris$Species的频数
+```r_tryit
+table(iris$Species)
+```
+画饼图显示不同种类鸢尾花的比例
+```r_tryit
+pie(table(iris$Species))
+```
+
+

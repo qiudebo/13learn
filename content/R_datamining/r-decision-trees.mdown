@@ -1,0 +1,18 @@
+
+
+下面的代码展示如何构建一棵决策树
+```
+#加载决策树包
+library("party")
+#查看R自带鸢尾花数据集合
+str(iris)
+#调用ctree函数构建一棵决策树，第一个参数定义了因变量和自变量
+iris_ctree <- ctree(Species ~ Sepal.Length + Sepal.Width + Petal.Length + Petal.Width, data=iris)
+#打印决策树
+print(iris_ctree)
+#可视化决策树
+plot(iris_ctree)
+# 
+plot(iris_ctree, type="simple")
+```
+
