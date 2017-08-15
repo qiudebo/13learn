@@ -1,0 +1,29 @@
+
+在R语言中的单引号或双引号对中写入的任何值都被视为字符串。
+
+**有效字符串的示例**
+以下示例展示了在R语言中创建字符串的规则
+```r_tryit
+a <- 'Start and end with single quote'
+print(a)
+
+b <- "Start and end with double quotes"
+print(b)
+
+c <- "single quote ' in between double quotes"
+print(c)
+
+d <- 'Double quotes " in between single quote'
+print(d)
+```
+
+---
+
+### 字符串操作
+
+**连接字符串 - paste()函数**
+
+R语言中的许多字符串使用paste()函数组合。 它可以将任意数量的参数组合在一起。
+**语法**
+
+对于粘贴功能的基本语法是 -

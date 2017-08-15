@@ -1,0 +1,80 @@
+
+### if语句
+
+if语句由一个布尔表达式后跟一个或多个语句组成。
+
+**基本语法:**
+```
+if(boolean_expression) {
+   // statement(s) will execute if the boolean expression is true.
+}
+```
+如果布尔表达式的计算结果为true，那么if语句中的代码块将被执行。  
+如果布尔表达式的计算结果为false，那么第一组代码在if语句结束之后（在结束大括号之后）将被执行。
+
+**示例代码：**
+```r_tryit
+x <- 30L
+if(is.integer(x)) {
+   print("X is an Integer")
+}
+```
+
+---
+
+### If...Else语句
+
+if语句后面可以是一个可选的else语句，当布尔表达式为false时执行。
+
+**基本语法:**
+```
+if(boolean_expression) {
+   // statement(s) will execute if the boolean expression is true.
+} else {
+   // statement(s) will execute if the boolean expression is false.
+}
+```
+如果布尔表达式的计算结果为真，则将执行if代码块，否则将执行代码块。
+
+**示例代码：**
+```r_tryit
+x <- c("what","is","truth")
+
+if("Truth" %in% x) {
+   print("Truth is found")
+} else {
+   print("Truth is not found")
+}
+```
+---
+
+### if ... else if ... else语句
+
+if语句后面可以跟一个可选的else if ... else语句。
+
+**基本语法:**
+
+```
+if(boolean_expression 1) {
+   // Executes when the boolean expression 1 is true.
+} else if( boolean_expression 2) {
+   // Executes when the boolean expression 2 is true.
+} else if( boolean_expression 3) {
+   // Executes when the boolean expression 3 is true.
+} else {
+   // executes when none of the above condition is true.
+}
+```
+
+**示例代码：**
+```r_tryit
+x <- c("what","is","truth")
+
+if("Truth" %in% x) {
+   print("Truth is found the first time")
+} else if ("truth" %in% x) {
+   print("truth is found the second time")
+} else {
+   print("No truth found")
+}
+```

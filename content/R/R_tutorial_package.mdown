@@ -1,0 +1,7 @@
+
+R语言教程需要安装如下包：
+
+reshape包①是一套重构和整合数据集的绝妙的万能工具
+
+install.packages("reshape")
+

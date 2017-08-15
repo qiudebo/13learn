@@ -1,0 +1,45 @@
+
+循环结构重复地执行一个或一系列语句，直到某个条件不为真为止。循环结构包括for和while循环。
+
+### for循环
+for循环重复地执行一个语句，直到某个变量的值不再包含在序列seq中为止。
+语法为：
+
+```
+for (value in vector) {
+   statements
+}
+```
+
+在下例中：
+
+```r_tryit
+v <- LETTERS[1:4]
+for ( i in v) {
+   print(i)
+}
+```
+字母表安装默认顺序输出4次。
+
+---
+
+### while循环
+
+while循环重复地执行一个语句，直到条件不为真为止。语法为：
+
+```
+while (test_expression) {
+   statement
+}
+```
+作为第二个例子，代码：
+```r_tryit
+v <- c("Hello","while loop")
+cnt <- 2
+
+while (cnt < 7) {
+   print(v)
+   cnt = cnt + 1
+}
+```
+当计数器小于7时，停止循环打印字符串向量。
