@@ -1,0 +1,4 @@
+
+本章节演示一个R语言关联规则的例子。
+
+使用Titanic 数据集，下载地址[titanic.raw.rdata](http://www.rdatamining.com/data)

@@ -1,5 +1,7 @@
 本章节演示R语言k-means聚类
 
+K均值算法
+
 ```
 newiris <- iris
 newiris$Species <- NULL
