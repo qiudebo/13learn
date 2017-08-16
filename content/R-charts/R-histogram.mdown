@@ -1,0 +1,13 @@
+
+直方图（Histogram）是展示连续数据分布最常用的工具，它本质上是对密度函数的一种估计。
+
+我们知道，对于连续随机变量来说，其密度函数即为分布函数的导数：
+
+
+
+par(mfrow = c(2, 2), mar = c(2, 3, 2, 0.5), mgp = c(2,+ 0.5, 0))
+data(geyser, package = "MASS")
+hist(geyser$waiting, main = "(1) freq = TRUE", xlab = "waiting")
+hist(geyser$waiting, freq = FALSE, xlab = "waiting",main = "(2) freq = FALSE")
+hist(geyser$waiting, breaks = 5, density = 10, xlab = "waiting",main = "(3) breaks = 5")
+hist(geyser$waiting, breaks = 40, col = "red", xlab = "waiting",main = "(4) breaks = 40")

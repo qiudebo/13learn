@@ -1,0 +1,32 @@
+install.packages('kernlab')
+install.packages('klaR')
+install.packages('e1071')
+install.packages('arules')
+install.packages('arulesSequences')
+install.packages('apcluster')
+install.packages('forecast')
+install.packages('glmnet')
+install.packages('igraph')
+install.packages('lars')
+install.packages('caret')
+install.packages('network')
+install.packages('party')
+install.packages('randomForest')
+install.packages('recommenderlab')
+install.packages('rmmseg4j')
+install.packages('ROCR')
+install.packages('rpart')
+install.packages('rpartOrdinal')
+install.packages('RWeka')
+install.packages('sna')
+install.packages('stringr')
+install.packages('tm')
+install.packages('sqldf')
+install.packages('XML')
+
+---
+
+||||
+|-|-|-|
+|决策树|Decision Tree|install.packages("party")|
+|随机森林|Random Forest|install.packages("randomForest")|

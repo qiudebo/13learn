@@ -26,4 +26,137 @@ print(d)
 R语言中的许多字符串使用paste()函数组合。 它可以将任意数量的参数组合在一起。
 **语法**
 
-对于粘贴功能的基本语法是 -
+对于粘贴功能的基本语法是:
+```
+paste(..., sep = "", collapse = NULL)
+```
+参数的说明:
+
+*  ...表示要组合的任意数量的自变量;
+*  sep表示参数之间的任何分隔符, 它是可选的;
+*  collapse用于消除两个字符串之间的空格,但不是一个字符串的两个字内的空间。
+
+**示例代码：
+```r_tryit
+a <- "Hello"
+b <- 'How'
+c <- "are you? "
+
+print(paste(a,b,c))
+
+print(paste(a,b,c, sep = "-"))
+
+print(paste(a,b,c, sep = "", collapse = ""))
+```
+
+**格式化数字和字符串 - format()函数**
+
+可以使用format()函数将数字和字符串格式化为特定样式。
+**语法**
+
+格式化函数的基本语法是
+```
+format(x, digits, nsmall, scientific, width, justify = c("left", "right", "centre", "none")) 
+```
+参数的描述:
+
+*  x是向量输入;
+*  digits是显示的总位数;
+*  nsmall是小数点右边的最小位数;
+*  科学设置为TRUE以显示科学记数法;
+*  width指示通过在开始处填充空白来显示的最小宽度;
+*  justify是字符串向左，右或中心的显示。
+
+**示例代码：
+
+```r_tryit
+# Total number of digits displayed. Last digit rounded off.
+result <- format(23.123456789, digits = 9)
+print(result)
+
+# Display numbers in scientific notation.
+result <- format(c(6, 13.14521), scientific = TRUE)
+print(result)
+
+# The minimum number of digits to the right of the decimal point.
+result <- format(23.47, nsmall = 5)
+print(result)
+
+# Format treats everything as a string.
+result <- format(6)
+print(result)
+
+# Numbers are padded with blank in the beginning for width.
+result <- format(13.7, width = 6)
+print(result)
+
+# Left justify strings.
+result <- format("Hello", width = 8, justify = "l")
+print(result)
+
+# Justfy string with center.
+result <- format("Hello", width = 8, justify = "c")
+print(result)
+```
+
+**计算字符串中的字符数 - nchar()函数**
+
+此函数计算字符串中字符数(包含空格)。
+
+**语法**
+
+nchar()函数的基本语法是:
+```
+nchar(x)
+```
+x是向量输入
+
+**示例代码：
+
+```r_tryit
+result <- nchar("Count the number of characters")
+print(result)
+```
+
+**更改case - toupper()和tolower()函数**
+
+这些函数改变字符串的字符的大小写。
+**语法**
+toupper()和tolower()函数的基本语法是:
+```
+toupper(x)
+tolower(x)
+```
+**示例代码：
+
+```r_tryit
+# Changing to Upper case.
+result <- toupper("Changing To Upper")
+print(result)
+
+# Changing to lower case.
+result <- tolower("Changing To Lower")
+print(result)
+```
+
+**提取字符串的一部分 - substring()函数**
+
+此函数提取字符串的部分。
+**语法**
+
+substring()函数的基本语法是:
+```
+substring(x,first,last)
+```
+参数的描述:
+
+*  x是字符向量输入;
+*  首先是要提取的第一个字符的位置;
+*  last是要提取的最后一个字符的位置。
+
+**示例代码：**
+```r_tryit
+# Extract characters from 5th to 7th position.
+result <- substring("Extract", 5, 7)
+print(result)
+```
