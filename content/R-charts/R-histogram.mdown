@@ -3,11 +3,37 @@
 
 我们知道，对于连续随机变量来说，其密度函数即为分布函数的导数：
 
+R中提供了hist()函数，其默认用法如下：
 
 
+```
 par(mfrow = c(2, 2), mar = c(2, 3, 2, 0.5), mgp = c(2,+ 0.5, 0))
 data(geyser, package = "MASS")
 hist(geyser$waiting, main = "(1) freq = TRUE", xlab = "waiting")
 hist(geyser$waiting, freq = FALSE, xlab = "waiting",main = "(2) freq = FALSE")
 hist(geyser$waiting, breaks = 5, density = 10, xlab = "waiting",main = "(3) breaks = 5")
 hist(geyser$waiting, breaks = 40, col = "red", xlab = "waiting",main = "(4) breaks = 40")
+```
+
+喷泉间隔时间直方图：
+（1）使用默认参数值（作频数图）；
+（2）概率密度直方图；
+（3）减小区间段数，直方图看起来更平滑（偏差大，方差小）；
+（4）增大区间段数，直方图更突兀（偏差小，方差大）。
+
+```
+par(mar = c(1.8, 3, 0.5, 0.1), mgp = c(2, 0.5, 0))
+data(geyser, package = "MASS")
+hst = hist(geyser$waiting, probability = TRUE, main = "",xlab = "waiting")
+d = density(geyser$waiting)
+polygon(c(min(d$x), d$x, max(d$x)), c(0, d$y, 0), col = "lightgray", border = NA)
+lines(d)
+ht = NULL
+brk = seq(40, 110, 5)
+for (i in brk) ht = c(ht, d$y[which.min(abs(d$x - i))])
+segments(brk, 0, brk, ht, lty = 3)
+```
+
+直方图与密度曲线的结合：借助函数density()可以计算出数据的核
+密度估计，然后利用低层作图函数lines()将核密度估计曲线添加到直方图
+中。注意本图中其它低层作图函数的使用。

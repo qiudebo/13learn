@@ -2,7 +2,7 @@
 
 
 安装R包
-install.packages('RColorBrewer') # 直方图
+install.packages('RColorBrewer')  # 条形图
 
 
 
@@ -12,3 +12,8 @@ reshape包①是一套重构和整合数据集的绝妙的万能工具
 
 install.packages("reshape")
 
+E:\letv\beidou\lib\perfect-scrollbar\Gruntfile.js
+
+E:\letv\beidou\lib\angular-perfect-scrollbar
+
+E:\letv\beidou\lib\datetimepicker

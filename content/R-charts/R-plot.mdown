@@ -1,0 +1,10 @@
+
+散点图通常用来展示两个变量之间的关系，这种关系可能是线性或非线性的。图中每一个点的横纵坐标都分别对应两个变量各自的观测值，因此散点所反映出来的趋势也就是两个变量之间的关系。
+
+R中散点图的函数为plot.default()，但由于plot()是泛型函数，通常我们只需要提供两个数值型向量给plot()即可画散点图，或者提供一个两列的矩阵或数据框。函数plot.default()的用法如下：
+
+
+library(MSG)
+data(BinormCircle)
+head(BinormCircle, 10)
+coef(summary(lm(V2 ~ V1, BinormCircle)))

@@ -1,0 +1,49 @@
+
+本章节我们使用Python来实现随机变量的概率分布。在讨论这些概率分布之前，我们先了解什么是随机变量（randomvariable）。随机变量是对一次试验结果的量化。
+
+随机变量是一个变量，它取值于一组可能的值（离散或连续的），并服从某种随机性。随机变量的每个可能取值都与一个概率相关联。随机变量的所有可能取值和与之相关联的概率就被称为概率分布（probability distributrion）。
+
+概率分布有两种类型：离散（discrete）概率分布和连续（continuous）概率分布。
+离散概率分布也称为概率质量函数（probability mass function）。离散概率分布的例子有伯努利分布（Bernoulli distribution）、二项分布（binomial distribution）、泊松分布（Poisson distribution）和几何分布（geometric distribution）等。
+
+连续概率分布也称为概率密度函数（probability density function），它们是具有连续取值（例如一条实线上的值）的函数。正态分布（normal distribution）、指数分布（exponential distribution）和β分布（beta distribution）等都属于连续概率分布。
+
+## 二项分布（Binomial Distribution）
+
+
+抛硬币实验：设计一个实验，每组抛10次，假设每次正面朝上概率均为0.5，重复1000组，计算概率分布。
+
+n, p = 10, .5  # number of trials, probability of each trial
+s = np.random.binomial(n, p, 1000)
+sum(np.random.binomial(9, 0.1, 20000) == 0)/20000
+
+
+
+
+## 高斯分布
+
+
+
+高斯分布的概率密度函数:
+$$p(x) = \frac{1}{\sqrt{ 2 \pi \sigma^2 }}e^{ - \frac{ (x - \mu)^2 } {2 \sigma^2} }$$
+
+ $\mu$:表示均值  
+ $\sigma$:表示标准差  
+ $\sigma^2$:标准差的平方是方差  
+
+
+```
+mu, sigma = 0, 0.1 # mean and standard deviation
+s = np.random.normal(mu, sigma, 1000) 
+abs(mu - np.mean(s)) < 0.01 # Verify the mean and the variance
+abs(sigma - np.std(s, ddof=1)) < 0.01
+
+# 画样本服从该分布的概率密度的直方图
+
+count, bins, ignored = plt.hist(s, 30, normed=True)
+plt.plot(bins, 1 / (sigma * np.sqrt(2 * np.pi)) * 
+             np.exp(- (bins - mu) ** 2 / (2 * sigma ** 2)), 
+             linewidth=2,
+             color='r')
+plt.show()
+```
