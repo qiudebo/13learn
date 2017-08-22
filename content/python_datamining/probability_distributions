@@ -2,6 +2,8 @@
 本章节我们使用Python来实现随机变量的概率分布。在讨论这些概率分布之前，我们先了解什么是随机变量（randomvariable）。随机变量是对一次试验结果的量化。
 随机变量是一个变量，它取值于一组可能的值（离散或连续的），并服从某种随机性。随机变量的每个可能取值都与一个概率相关联。随机变量的所有可能取值和与之相关联的概率就被称为概率分布（probability distributrion）。
 
+---
+
 ## 概率分布
 
 概率分布有两种类型：离散（discrete）概率分布和连续（continuous）概率分布。
@@ -13,13 +15,16 @@
 
 ## 二项分布（Binomial Distribution）
 服从二项分布的随机变量X表示在n个独立的是/非试验中成功的次数，其中每次试验的成功概率为p。
-记为：$X\sim(b,n)$
 
-二项分布的数学公式：
+记为：$$X\sim(b,n)$$
+
+### 二项分布的数学公式：
+
 $$P(X=k;p) = \binom{k}{n}p^k(1-p)^{n-k}$$
-期望，方差：$E(X) = np, Var(X) = np(1−p)$
 
-下面模拟二项分布：
+期望，方差：$$E(X) = np, Var(X) = np(1−p)$$
+
+### 下面模拟二项分布：
 
 ```
  n = 10
@@ -37,11 +42,16 @@ $$P(X=k;p) = \binom{k}{n}p^k(1-p)^{n-k}$$
 ```
 
 ## 泊松分布（Poisson Distribution）
-记为：$X\sim\pi(\lambda)$
-泊松分布的数学公式：
+一个服从泊松分布的随机变量X，表示在具有比率参数（rate parameter）$$\lambda$$的一段固定时间间隔内，事件发生的次数。参数$$\lambda$$告诉你该事件发生的比率。随机变量X的平均值和方差都是$$\lambda$$。
+
+记为：$$X\sim\pi(\lambda)$$
+
+### 泊松分布的数学公式：
+
 $$P(X=k; \lambda)=\frac{\lambda^k e^{-\lambda}}{k!}$$
 
-下面模拟泊松分布：
+### 下面模拟泊松分布：
+
 直方图
 ```
 n = 10
@@ -83,11 +93,17 @@ plt.title('Simulating Possion Random Variables')
 plt.show()
 ```
 ## 正态分布（Normal Distribution）
-记为：$X\sim N(\mu,\sigma^2)$
-正态分布的数学公式：
+正态分布是一种连续分布，其函数可以在实线上的任何地方取值。正态分布由两个参数描述：分布的平均值$$\mu$$和方差$$\sigma^2$$ 。
+
+记为：$$X\sim N(\mu,\sigma^2)$$
+
+### 正态分布的数学公式：
+
 $$p(x;\mu;\sigma) = \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2} {2\sigma^2}}$$
+
 期望，方差：$E(X) = \mu, Var(X) = \sigma^2$
-下面模拟正态分布：
+
+### 下面模拟正态分布：
 
 ```
 mu = 0
@@ -103,10 +119,14 @@ plt.show()
 ```
 
 ## β分布（Beta Distribution）
-β分布的数学公式：
+β分布是一个取值在 [0, 1] 之间的连续分布，它由两个形态参数α和β的取值所刻画。
+### β分布的数学公式：
+
 $$f(x; a,b) = \frac{1}{B(\alpha,\beta)}x^{\alpha - 1}(1-x)^{\beta - 1},B(\alpha, \beta) = \int_0^1 t^{\alpha - 1}(1 - t)^{\beta - 1}$$
-期望，方差：$E(X) = \frac{\beta}{\alpha + \beta}, Var(X) = \frac{\alpha\beta}{(\alpha + \beta)^2(\alpha + \beta +1)}$
-下面模拟β分布：
+
+期望，方差：$$E(X) = \frac{\beta}{\alpha + \beta}, Var(X) = \frac{\alpha\beta}{(\alpha + \beta)^2(\alpha + \beta +1)}$$
+
+### 下面模拟β分布：
 
 
 ```
@@ -121,11 +141,15 @@ plt.ylabel('Probability density')
 plt.show()
 ```
 ## 指数分布（Exponential Distribution）
+指数分布是一种连续概率分布，用于表示独立随机事件发生的时间间隔。比如旅客进入机场的时间间隔、打进客服中心电话的时间间隔、中文维基百科新条目出现的时间间隔等等。
 
-指数分布的数学公式：
+### 指数分布的数学公式：
+
 $$P(x; \lambda) ={\lambda}e^{{-\lambda}{x}}$$
-期望，方差：$E(X) =\frac{1}{\lambda},Var(X)=\frac{1}{\lambda^2}$
-下面模拟指数分布：
+
+期望，方差：$$E(X) =\frac{1}{\lambda},Var(X)=\frac{1}{\lambda^2}$$
+
+### 下面模拟指数分布：
 
 散点图
 ```
