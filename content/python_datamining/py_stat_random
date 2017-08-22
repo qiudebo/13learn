@@ -1,0 +1,3 @@
+# uniform distribution
+
+s = np.random.binomial(n, p, 1000)

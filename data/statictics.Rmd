@@ -1,0 +1,51 @@
+---
+title: "py_stat_random"
+author: "qb"
+date: "2017年8月21日"
+output: html_document
+---
+
+## 二项分布(Binomial Distribution)
+
+记为：$X\sim(b,n)$
+
+$$P(X=k;p) = \binom{k}{n}p^k(1-p)^{n-k}$$
+期望，方差：$E(X) = np, Var(X) = np(1−p)$
+
+
+
+## 泊松分布(Poisson Distribution)
+记为：$X\sim\pi(\lambda)$
+
+$$P(X=k; \lambda)=\frac{\lambda^k e^{-\lambda}}{k!}$$
+期望，方差：$E(X) = \lambda, Var(X) = \lambda$
+
+## 正态分布（Normal Distribution）
+记为：$X\sim N(\mu,\sigma^2)$
+
+$$p(x;\mu;\sigma) = \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2} {2\sigma^2}}$$
+期望，方差：$E(X) = \mu, Var(X) = \sigma^2$
+
+## β分布（Beta Distribution）
+$$f(x; a,b) = \frac{1}{B(\alpha,\beta)}x^{\alpha - 1}(1-x)^{\beta - 1},B(\alpha, \beta) = \int_0^1 t^{\alpha - 1}(1 - t)^{\beta - 1}$$
+ 
+期望，方差：$E(X) = \frac{\beta}{\alpha + \beta}, Var(X) = \frac{\alpha\beta}{(\alpha + \beta)^2(\alpha + \beta +1)}$
+
+## 指数分布（Exponential Distribution）
+$$P(x; \lambda) ={\lambda}e^{{-\lambda}{x}}$$
+期望，方差：$E(X) =\frac{1}{\lambda},Var(X)=\frac{1}{\lambda^2}$
+
+
+
+
+
+
+
+
+
+
+
+## 均匀分布
+
+
+$$p(x) = \frac{1}{b - a}$$
