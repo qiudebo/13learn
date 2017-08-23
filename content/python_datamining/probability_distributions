@@ -50,6 +50,8 @@ $$P(X=k;p) = \binom{k}{n}p^k(1-p)^{n-k}$$
 
 $$P(X=k; \lambda)=\frac{\lambda^k e^{-\lambda}}{k!}$$
 
+期望，方差：$$E(X) = \lambda, Var(X) = \lambda$$
+
 ### 下面模拟泊松分布：
 
 直方图
@@ -101,7 +103,7 @@ plt.show()
 
 $$p(x;\mu;\sigma) = \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2} {2\sigma^2}}$$
 
-期望，方差：$E(X) = \mu, Var(X) = \sigma^2$
+期望，方差：$$E(X)=\mu, Var(X)=\sigma^2$$
 
 ### 下面模拟正态分布：
 
@@ -127,7 +129,6 @@ $$f(x; a,b) = \frac{1}{B(\alpha,\beta)}x^{\alpha - 1}(1-x)^{\beta - 1},B(\alpha,
 期望，方差：$$E(X) = \frac{\beta}{\alpha + \beta}, Var(X) = \frac{\alpha\beta}{(\alpha + \beta)^2(\alpha + \beta +1)}$$
 
 ### 下面模拟β分布：
-
 
 ```
 a=0.5
