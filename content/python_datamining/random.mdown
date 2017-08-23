@@ -1,0 +1,31 @@
+
+随机变量
+
+本章节主要解决随机数
+
+通过numpy.random模块进行分析
+numpy.random.rand(d0, d1, …, dn)：
+其中d0, d1, …, dn为整数（int）型，输出一个shape为（d0, d1, …, dn）的矩阵。
+
+```
+np.random.rand(3,2)
+```
+
+numpy.random.randn(d0, d1, …, dn)
+其中d0, d1, …, dn)为整数型，输出标准正太分布的矩阵。
+生产的分布，则sigma * np.random.randn(…) + mu，如下：
+若我们要生成满足正太分布为N(3，2.5^2)，2行4列的array
+
+```
+2.5 * np.random.randn(2, 4) + 3
+```
+
+numpy.random.randint(low, high=None, size=None)
+生产一定范围内的元素为整数的array。
+low为下限，size为生成的array大小，如果high为none则生成0~low的均匀分布随机数，若指定了high，那么生产low~high的均匀分布随机数。如生产2×4的在（0，4）的array，则：
+
+```
+np.random.randint(5, size=(2, 4))
+```
+
+

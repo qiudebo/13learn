@@ -1,0 +1,49 @@
+
+
+本章节我们讲解样本描述的统计量。
+下面我们使用 numpy.stats 模块和 scipy.stats 模块进行数值分析。
+---
+
+## 随机数据
+
+下面我们使用Numpy的ndarray类型来描述一组数据，使用numpy.random 模块生成随机数据。
+
+```
+import numpy as np
+
+data1 = np.array([1, 2, 3])  # 使用ndarray来创建一维数组
+data2 = np.random.normal(0, 1, size=100)  # 随机产生一组均值为0、方差为1的正态分布的结果
+data3 = np.random.randint(0, 2, size=100)  # 随机产生一组100次抛硬币的结果
+```
+## 中心位置（均值、中位数、众数）
+数据的中心位置可分为均值（Mean），中位数（Median），众数（Mode）。其中均值和中位数用于定量的数据，众数用于定性的数据。其中均值和中位数用于定量分析，众数用于定性的分析。
+
+```
+data = np.random.randint(0, 100, size=100) # 从区间[0,100)随机生成100个数
+np.mean(data)
+np.median(data)
+stats.mode(data)
+```
+
+## 发散程度（极差、方差、标准差、变异系数）
+
+
+## 偏差程度（z-分数）
+
+## 相关程度
+
+
+
+|包|方法|说明|
+|-|-|-|
+|numpy|array|创造一组数|
+|numpy.random|normal|创造一组服从正态分布的定量数|
+|numpy.random|randint|创造一组服从均匀分布的定性数|
+|numpy|mean|计算均值|
+|numpy|median|计算中位数|
+|scipy.stats|mode|计算众数|
+|numpy|ptp|计算极差|
+|numpy|var|计算方差|
+|numpy|std|计算标准差|
+|numpy|cov|计算协方差|
+|numpy|corrcoef|计算相关系数|

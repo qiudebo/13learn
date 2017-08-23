@@ -1,3 +1,13 @@
-# uniform distribution
+# 用于生成一个0到1的随机浮点数 random(n)
+# 用于生成一个指定范围内的随机浮点数，两个参数一个是上限，一个是下限 uniform(a,b)
+# 用于生成指定范围内的整数，生成上限和下限之间的随机数 randint(a,b)
+# 从指定范围内，按指定基数递增的集合中 获取一个随机数 randrange([start],stop [,step])
+# choice(sequence) 参数sequence表示一个有序类型
+# 用于将一个列表中的元素打乱 shuffle(x, [random])
+# 从指定序列中随机获取指定长度的片断 sample(sequence, k)
 
-s = np.random.binomial(n, p, 1000)
+
+
+
+
+
