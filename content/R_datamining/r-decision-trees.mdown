@@ -2,7 +2,10 @@
 
 下面的代码展示如何构建一棵决策树。
 
+---
+鸢尾花数据集在数据探索章节里有介绍。
 ```
+
 #加载决策树包
 library("party")
 #查看R自带鸢尾花数据集合
@@ -13,7 +16,14 @@ iris_ctree <- ctree(Species ~ Sepal.Length + Sepal.Width + Petal.Length + Petal.
 print(iris_ctree)
 #可视化决策树
 plot(iris_ctree)
+png(file="iris_ctree.png", bg="transparent")
+
 # 
 plot(iris_ctree, type="simple")
+
 ```
+显示图形如下：
+
+png(file="iris_ctree.png", bg="transparent")
+dev.off()
 
