@@ -1,0 +1,213 @@
+summary statistics
+descriptive statistics
+描述性统计 
+
+### 探索性分析
+
+也可以叫做经验性数据分析，目的是分析数据服从哪一种统计模型。对于单变量数据，我们可以看看它的分布是否服从正态分布，尾部偏大还是偏小，对称还是偏态。
+
+探索性分析的主要工具就是图形工具：
+
+离散数据：barplots
+histogram,dot plots,stem and leaf plots
+boxplots
+normal probability plots 
+
+
+### 样本数据
+
+下面为以下示例的样本数据
+```
+x <- (seq(-1,3,by=0.1))
+plot(x)
+```
+
+### 方差
+
+```
+x <- (seq(-1,3,by=0.1))
+var(x)
+```
+### 标准差
+```
+x <- (seq(-1,3,by=0.1))
+sd(x)
+```
+### 最大值最小值
+```
+x <- (seq(-1,3,by=0.1))
+max(x)
+min(x)
+```
+### 累积最大值最小值
+```
+x <- (seq(-1,3,by=0.1))
+cummax(x)
+cummin(x)
+```
+### 差分
+```
+x <- (seq(-1,3,by=0.1))
+diff(x)
+```
+### 平均数
+
+```
+y <- array(1:20,dim=c(4,5))
+mean(y)
+colMeans(y) # 行均值
+rowMeans(y) # 列均值
+```
+### 中位数
+```
+x <- (seq(-1,3,by=0.1))
+median(x)
+```
+### 众数
+```
+y <- c(1,1,2,2,2,3,4)*2
+table(y)
+max(table(y)) # 众数出现的次数
+table(y)==max(table(y)) # 众数在table(y)第几个? 第2个
+```
+
+### 偏斜度 (skewness)
+偏斜度公式
+$$m_{3}=\frac{\sum (x-\overline{x})^{3}}{n}$$
+```
+x <- (seq(-1,3,by=0.1))
+sum(((x-mean(x))^3))/length(x)
+```
+### 峰度(kurtosis)
+4阶中心距
+$$m_{4}=\frac{\sum (x-\overline{x})^{4}}{n}$$
+2阶中心距
+$$m_{2}=\frac{\sum (x-\overline{x})^{2}}{n}$$
+峰度
+$$g_{2}=\frac{m_{4}}{m_{2}^{2}}-3$$
+
+```
+x <- (seq(-1,3,by=0.1))
+
+a=mean(x)
+n=length(x)
+m4=sum((x-a)^4)/n
+m2=sum((x-a)^2)/n
+kurt=m4/m2^2 -3
+kurt
+```
+变异系数(coecient of variability)
+
+$$CV=\frac{sd(x)}{\overline{x}}$$
+```
+x <- (seq(-1,3,by=0.1))
+cv <- sd(x)/mean(x)
+cv
+```
+
+### 异常值 极端异常值
+
+异常值夺
+x >上百分位数+1.5×（上百分位数-下百分位数）
+x <下百分位数-1.5×（上百分位数-下百分位数）
+极端异常值夺
+x >上百分位数+3×（上百分位数-下百分位数）
+x <下百分位数-3×（上百分位数-下百分位数）
+
+```
+x <- c(1,2,3,4,5,6,7,8,9,20)
+# 分位数
+q <- quantile(x,c(.25,.75))
+q
+# 异常值下侧界限, 故x没有下侧异常值
+out.low<-q[1]-1.5*(q[2]-q[1])
+out.low
+# 异常值上侧界限, x有上侧异常值
+out.upper=q[1]+1.5*(q[2]-q[1])
+out.upper
+# 绘图来查看, 可以看到x的上侧异常值
+boxplot(x)
+```
+
+### 离散数据(Categorical data)
+
+#### 列表:table()
+```
+x <- c(1,1,2,0,2,0,0,1,1,0)
+y <- sample(c('y','n'),10,replace=TRUE)
+table(x)
+table(y)
+table(x,y)
+
+x <- c("Yes","No","No","Yes","Yes")
+y=1:9
+table(y)
+```
+
+#### factor()函数
+```
+x <- c("Yes","No","No","Yes","Yes")
+y <- sample(c('y','n'),10,replace=TRUE)
+factor(x)
+factor(y)
+table(x)/length(x)
+```
+#### gl()函数
+
+gl()函数的用法
+```
+gl(n, k, length = n*k, labels = 1:n, ordered = FALSE)
+```
+```
+gl(3,5)
+gl(3,1,15)
+```
+
+#### 条形图
+绘制因子频率
+```
+x<-c(1,2,3,4,5) # 抽样
+b<-sample(x,10,replace=TRUE)
+barplot(table(b))
+barplot(table(b)/length(b))
+```
+#### 饼图
+```
+x<-c(1,2,3,4,5) # 抽样
+b<-sample(x,10,replace=TRUE)
+b.count=table(b)
+pie(b.count)
+names(b.count)=c("a","b","c","d","e") # 命名
+pie(b.count)
+pie(b.count,col=c("purple","green","cyan","white","blue")) # 改变颜色
+```
+#### 折线图
+```
+x<-c(1,2,3,4,5)
+l<-as.numeric(x)
+line(l)
+```
+
+### 连续数据(numerical data)
+
+#### fivenum
+
+#### summary
+
+#### 分位数
+
+
+#### 条件性测量
+
+
+#### 茎叶图
+
+#### 直方图
+
+#### 箱线图
+
+#### 折线图
+
+
+#### 区间分割-cut函数
+
