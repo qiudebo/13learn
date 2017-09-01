@@ -34,13 +34,7 @@ $$f(x; a,b) = \frac{1}{B(\alpha,\beta)}x^{\alpha - 1}(1-x)^{\beta - 1},B(\alpha,
 ## 指数分布（Exponential Distribution）
 记为：$X\sim N(\mu,\sigma^2)$
 $$P(x; \lambda) ={\lambda}e^{{-\lambda}{x}}$$
-期望，方差：$E(X) =\frac{1}{\lambda},Var(X)=\frac{1}{\lambda^2}$
-
-
-
-
-
-
+期望，方差：$$E(X) =\frac{1}{\lambda},Var(X)=\frac{1}{\lambda^2}$$
 
 
 
