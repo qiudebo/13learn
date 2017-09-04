@@ -15,10 +15,17 @@ if __name__ == '__main__':
 	plt.plot(ys, xs)
 	#plt.show()
 	n, p = 10, .5
+	# 生成二项分布的随机数
 	s = np.random.binomial(n, p, 1000)
 	c = Counter(s)
-	print list(c.elements())
+	x = c.keys()
+	y = c.values()
+	y1 = []
+	for yy in y:
+		y1.append(yy/10000.00)
+    print zip(x,y1)
 	print np.sum(s)/10000.00
 	print type(s)
 	plt.hist(s)
+	plt.plot(x,y)
 	plt.show()

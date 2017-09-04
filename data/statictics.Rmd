@@ -44,3 +44,6 @@ $$P(x; \lambda) ={\lambda}e^{{-\lambda}{x}}$$
 
 
 $$p(x) = \frac{1}{b - a}$$
+
+## 
+f(x) = \frac{1}{\beta} \exp(-\frac{x}{\beta})
