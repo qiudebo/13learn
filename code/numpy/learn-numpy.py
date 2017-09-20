@@ -2,6 +2,7 @@
 
 ## http://www.scipy-lectures.org/intro/numpy/array_object.html#creating-arrays
 
+
 import numpy as np
 
 
@@ -17,6 +18,8 @@ b = np.array([[0,1,2],[3,4,5]])
 b.ndim
 b.shape
 len(b)
+
+
 
 ### 方式二：函数 （使用函数创建数组）
 
@@ -38,7 +41,6 @@ b = np.random.randn(4) # 高斯分布
 c = np.random.seed(1234) # 设置随机种子
 
 #### np.empty
-
 
 ### 基本数据类型
 #### 自动检测数据类型
@@ -97,4 +99,43 @@ a[5:] = b[::-1] # 反转赋值
 #### 矩阵相加   生成5*5矩阵
 np.arange(6) + np.arange(0, 51, 10)[:, np.newaxis]
 
-#### python拷贝（浅）、深拷贝  检查是否共享内存
+#### python拷贝（浅）  检查是否共享内存
+a = np.arange(10)
+b = a[::2]
+np.may_share_memory(a,b)
+b[0] = 12
+
+
+a = np.arange(10)
+c = a[::2].copy()
+c[0] = 12
+np.may_share_memory(a,c)
+
+#### 素数
+is_prime = np.ones((100,), dtype=bool)
+
+is_prime[:2] = 0
+
+N_max = int(np.sqrt(len(is_prime) - 1))
+for j in range(2, N_max + 1):
+	is_prime[2*j::j] = False
+
+#### 使用布尔码
+np.random.seed(3)
+a = np.random.random_integers(0, 20, 15)
+(a % 3 == 0)
+mask = (a % 3 == 0)
+extract_from_a = a[mask]
+extract_from_a
+
+a[a % 3 == 0] = -1
+a
+
+#### 索引整型数据
+a = np.arange(0, 100, 10)
+a[[2, 3, 2, 4, 2]]
+a[[9, 7]] = -100  # 赋值
+
+
+
+
