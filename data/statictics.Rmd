@@ -45,5 +45,14 @@ $$P(x; \lambda) ={\lambda}e^{{-\lambda}{x}}$$
 
 $$p(x) = \frac{1}{b - a}$$
 
-## 
-f(x) = \frac{1}{\beta} \exp(-\frac{x}{\beta})
+```{r}
+a<-c(1,2,3,4,5)
+print a
+hist(a)
+```
+
+
+
+
+
+$$\frac{1}{\beta} \exp(-\frac{x}{\beta})$$
