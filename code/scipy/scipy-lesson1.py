@@ -16,7 +16,6 @@ def func(x,p):
 def residuals(p,y,x):
 	return y-func(x,p)
 
-
 x = np.linspace(0,2*np.pi,100)
 A,k,theta = 10,0.34,np.pi/6
 y0 = func(x,[A,k,theta])
