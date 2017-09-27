@@ -50,7 +50,7 @@ def residuals(p): # 偏差(残差)
 
 # 计算偏差的平方和
 
-r = optimize.leastsq(residuals,[1,0]) # a,b初始值，可随意指定，随着迭代次数的增加，k、b，
+r = optimize.leastsq(residuals,[1,0]) #偏差平方和最小，参数a,b初始值，可随意指定，随着迭代次数的增加，k、b，
 a,b=r[0]
 print a,b
 print y-(a*t + b)
