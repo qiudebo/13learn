@@ -1,0 +1,36 @@
+sentenceData = spark.createDataFrame([
+    (0.0, "Hi Hi Hi I heard about Spark Spark Spark Spark Spark about about about heard"),
+    (0.0, "test I test about Sparks"),
+    (1.0, "me I heard about Spark")
+], ["label", "sentence"])
+
+tokenizer = Tokenizer(inputCol="sentence", outputCol="words")
+wordsData = tokenizer.transform(sentenceData)
+
+hashingTF = HashingTF(inputCol="words", outputCol="rawFeatures")
+featurizedData = hashingTF.transform(wordsData)
+featurizedData.show(truncate=False)
+
+
+idf = IDF(inputCol="rawFeatures", outputCol="features")
+idfModel = idf.fit(featurizedData)
+rescaledData = idfModel.transform(featurizedData)
+
+rescaledData.select("label", "features").show(truncate=False)
+
+
+
+
+sentenceData = spark.createDataFrame([
+    (0.0, "Hi Hi Hi I heard about Spark Spark Spark Spark Spark about about about heard"),
+    (0.0, "test I test about Sparks"),
+    (1.0, "me I heard about Spark")
+], ["label", "sentence"])
+tokenizer = Tokenizer(inputCol="sentence", outputCol="words")
+wordsData = tokenizer.transform(sentenceData)
+hashingTF = HashingTF(inputCol="words", outputCol="rawFeatures")
+
+
+
+
+

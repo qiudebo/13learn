@@ -1,0 +1,156 @@
+
+协同过滤cf
+
+以商品推荐举例：
+
+用户
+商品
+
+效用函数：
+
+用户-商品 效用矩阵
+
+正则化
+
+余弦距离
+
+
+
+混淆矩阵
+
+
+
+数据压缩：
+
+特征约减 feature reduction： PCA
+
+
+
+LSI：搜索引擎语义层次检索 Latent Semantic Indexing
+
+
+特征分解与SVD
+
+适用情况：
+
+特征分解适用于变换的矩阵必须为方阵
+
+SVD适用于任意矩阵的分解
+
+计算复杂度：
+SVD：O(n^3)
+
+
+
+
+计算模型：
+MapReduce
+RDD
+MPI
+
+GPU
+
+
+
+算法：为解决一个问题而采取的方法和步骤，即对操作步骤的描述。
+
+
+
+
+
+
+
+C++ 程序设计语言
+面向过程
+面向对象
+
+\ 转义字符 续行符
+
+
+标识符： 符号常量 变量 函数 数组 类型 结构体 共用体
+
+
+
+关键字：
+
+include
+using namespace
+
+typename/class
+
+
+const
+
+int float double char string 
+void
+if else
+for while do 
+return 
+
+struct
+
+class 
+private public  protected
+
+宏定义
+库函数 自定义函数
+
+实参
+形参
+值传递--单向传递
+
+
+作用域 可见范围
+
+
+函数重载
+函数模版 ----泛型
+
+
+高内聚 松耦合
+
+
+静态存储区
+动态存储区--自动释放
+
+
+模块化 通用性
+
+
+命名
+
+
+类
+属性
+行为
+封装
+抽象
+
+继承--重用
+
+多态
+
+构造函数
+析构函数
+this
+
+
+虚函数
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

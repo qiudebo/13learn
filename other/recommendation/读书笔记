@@ -1,0 +1,631 @@
+
+线性代数：代数 矩阵
+
+现实世界真实对象的高度抽象和概括，认识的过程：具体-抽象-具体
+
+幂等性
+封闭
+
+
+闭包 
+
+
+转移矩阵
+
+
+最小二乘
+
+插值
+
+迹 行列式 特征值 的关系？
+det 行列式 等于特征值的积
+迹 等于特征值的和
+
+
+矩阵  迹 对角线的和
+     秩
+
+     行列式
+
+     特征值
+
+     特征向量
+
+相似矩阵
+
+
+L1 正则 向量各个元素的绝对值之和
+L2 正则 向量各个元素的平方和然后再求开方
+
+正则化／标准化
+
+线性回归模型
+   Lasso回归：对于线性回归模型，使用L1正则化的模型叫做Lasso回归；
+   Ridge回归（岭回归）：使用L2正则化的模型叫做Ridge回归（岭回归）。
+
+
+矩阵论
+
+封闭
+数域
+
+
+线性空间
+矩阵空间
+
+
+向量范数
+矩阵范数
+
+矩阵的基
+矩阵的维数
+
+
+方射
+
+
+逆矩阵 -- 方阵
+
+矩阵的幂
+矩阵导数和积分
+
+
+算法：
+
+哈希表
+词袋模型
+
+bitmap
+
+
+数据挖掘（机器学习）
+
+
+GBDT（Gradient Boosting Decision Tree）梯度提升决策树
+
+random forest 随机森林
+boosted tree 提升树
+tree ensemble 集成树
+
+启发式
+
+
+泰勒展开时
+
+拉格朗日余项
+
+
+大数据：
+
+存储格式：
+Parquet
+
+压缩算法
+uncompressed, snappy, gzip, lzo
+
+orc压缩
+
+
+函数在某一点
+
+连续 可导 可微 积分
+
+连续 左右极限相等
+连续必可导，可导必连续，极限必存在
+
+可导：极限存在
+
+一元函数  可导、可微等价
+
+多元函数 可微 偏导数存在
+
+
+导数的本质是通过极限的概念对函数进行局部的线性逼近
+
+求已知函数在某点的导数的过程称为求导，已知导函数求原函数的过程，即不定积分。
+
+
+概率
+
+边缘分布，部分变量的概率分布，实际上是一种降纬操作。
+
+
+==============spark================
+Correlation
+距离计算:pearson spearman
+
+
+构建稠密矩阵
+生成数据框
+
+(4,[0,3],[1.0,-2.0])
+[4.0,5.0,0.0,3.0]
+[6.0,7.0,0.0,8.0]
+(4,[0,3],[9.0,1.0])
+
+[[ 1.        ,  0.10540926,         nan,  0.4       ],
+ [ 0.10540926,  1.        ,         nan,  0.9486833 ],
+ [        nan,         nan,  1.        ,         nan],
+ [ 0.4       ,  0.9486833 ,         nan,  1.        ]]
+
+
+===============================================================================
+
+上报：
+
+tvreport 致新 15min上报一次心跳
+http
+
+联网条件下： 
+
+1.信号源
+2.乐视产品
+
+第三方：华数、cibn、芒果
+第三方内容 重叠度
+只有第三方的播放作品，无第三方媒资表
+
+桌面 5s曝光数 2s曝光数
+
+乐见 同步剧场
+
+坑位
+
+桌面坑位越多 转化率越低
+
+开机率下降分析报告
+用户：点播、轮播        黄金档 肥皂党，发现用户的习惯 分类喜好  时间喜好 节目的喜好 主观的喜好                                    
+
+内容：
+
+提升用户体验
+
+宏观指标
+
+轮播：轮播时长、播放次数、播放人数
+
+基础数据：
+暴露问题
+
+描述性分析报告
+技术方式：
+
+大屏、小屏
+tv  乐视视频
+
+用户流失：连续3个月不开机
+
+用户路径
+
+信号源上报
+http上报
+sdk上报
+
+应用桌面：
+启动次数 启动人数 启动时长 使用时长
+
+游戏桌面
+
+乐范儿
+
+埋点规范
+
+乐范日报
+
+收入漏斗转化
+
+应用使用转化
+
+遥控器
+语音和大屏购物
+
+TV应用桌面
+
+互娱团队--
+
+-------------------------------------------------------
+如何省钱，如何挣钱？
+
+如何新增用户？ 如果留存用户？
+
+多少个桌面有效？
+用户的流失的分层 开机的分层？
+   内容性的功能性的
+哪些第三方价值大：重合度等？    开机 坏机  
+
+数据的理解和定位
+
+===================基础工作准备==========================
+
+1.mysql2hive
+
+2.rdd 基本操作
+
+
+select count(1)
+ from item a
+      inner join item_category  b on a.category_id=b.id
+      inner join item_brand c  on a.brand_id=c.id
+ where a.status in (0,1) and a.is_gift = 0 limit 10;
+
+
+drop table item;
+drop table item_category;
+drop table item_brand;
+drop table item_category_map;
+
+create EXTERNAL table item(
+   id string,
+   name string,
+   name_added string,
+   unit string,
+   market_price string,
+   sale_price string,
+   total_sale_amount string,
+   category_id string,
+   brand_id string,
+   status string,
+   origin string,
+   is_gift string
+) PARTITIONED BY(dt STRING)
+   ROW FORMAT DELIMITED
+   FIELDS TERMINATED BY ','
+   LOCATION "/Users/qiudebo/hive.db/item/";
+
+create EXTERNAL table item_category(
+    id string,
+    name string,
+    sname string
+)PARTITIONED BY(dt STRING)
+   ROW FORMAT DELIMITED
+   FIELDS TERMINATED BY ','
+   LOCATION "/Users/qiudebo/hive.db/item_category/";
+
+create EXTERNAL table item_brand(
+    id string,
+    name string,
+    chinese_name string,
+    english_name string
+)PARTITIONED BY(dt STRING)
+   ROW FORMAT DELIMITED
+   FIELDS TERMINATED BY ','
+   LOCATION "/Users/qiudebo/hive.db/item_brand/";
+
+CREATE EXTERNAL TABLE item_category_map (
+     id string,
+     old_category_id string,
+     new_category_id string,
+     status string 
+)PARTITIONED BY(dt STRING)
+   ROW FORMAT DELIMITED
+   FIELDS TERMINATED BY ','
+   LOCATION "/Users/qiudebo/hive.db/item_category_map/";
+
+CREATE EXTERNAL TABLE item_category_ng(
+      id string,
+      parent_id string,
+      name string,
+      sname string,
+      path string,
+      is_leaf string,
+      category_img string,
+      category_light_image string,
+      status string,
+      create_time string
+)PARTITIONED BY(dt STRING)
+   ROW FORMAT DELIMITED
+   FIELDS TERMINATED BY ','
+   LOCATION "/Users/qiudebo/hive.db/item_category_ng/";
+
+hadoop fs -rm -r /Users/qiudebo/data/item_test.dat /Users/qiudebo/hive.db/item/20171123/*
+hadoop fs -rm -r /Users/qiudebo/data/item_category_test.dat /Users/qiudebo/hive.db/item_category/20171123/*
+hadoop fs -rm -r /Users/qiudebo/data/item_brand_test.dat /Users/qiudebo/hive.db/item_brand/20171123/*
+
+hadoop fs -rm -r /Users/qiudebo/data/item_category_map_test.dat /Users/qiudebo/hive.db/item_category_map/20171123/*
+
+hadoop fs -rm -r /Users/qiudebo/data/item_category_ng_test.dat /Users/qiudebo/hive.db/item_category_ng/20171123/*
+
+ALTER TABLE item ADD IF NOT EXISTS PARTITION (dt='20171123') LOCATION '/Users/qiudebo/hive.db/item/20171123/';
+ALTER TABLE item_category ADD IF NOT EXISTS PARTITION (dt='20171123') LOCATION '/Users/qiudebo/hive.db/item_category/20171123/';
+ALTER TABLE item_brand ADD IF NOT EXISTS PARTITION (dt='20171123') LOCATION '/Users/qiudebo/hive.db/item_brand/20171123/';
+
+ALTER TABLE item_category_map ADD IF NOT EXISTS PARTITION (dt='20171123') LOCATION '/Users/qiudebo/hive.db/item_category_map/20171123/';
+ALTER TABLE item_category_ng ADD IF NOT EXISTS PARTITION (dt='20171123') LOCATION '/Users/qiudebo/hive.db/item_category_ng/20171123/';
+
+hadoop fs -put /Users/qiudebo/data/item_test.dat /Users/qiudebo/hive.db/item/20171123/
+hadoop fs -put /Users/qiudebo/data/item_category_test.dat /Users/qiudebo/hive.db/item_category/20171123/
+hadoop fs -put /Users/qiudebo/data/item_brand_test.dat /Users/qiudebo/hive.db/item_brand/20171123/
+hadoop fs -put /Users/qiudebo/data/item_category_map_test.dat /Users/qiudebo/hive.db/item_category_map/20171123/
+hadoop fs -put /Users/qiudebo/data/item_category_ng_test.dat /Users/qiudebo/hive.db/item_category_ng/20171123/
+
+select id,name,name_added,unit,market_price,sale_price,total_sale_amount,category_id,brand_id,status,origin,is_gift from item;
+
+select id,name,sname from item_category;
+
+select id,name,chinese_name,english_name from item_brand;
+
+replace(replace(replace(name_added,',',' '), CHAR(10), ''), CHAR(13), '')
+replace(replace(replace(name,',',' '), CHAR(10), ''), CHAR(13), '')
+
+mysql -uroot  -p12345678 -h 127.0.0.1 -D mia --default-character-set='utf8'  --skip-column-names  -e "select id,replace(replace(replace(name,',',' '), CHAR(10), ''), CHAR(13), ''),replace(replace(replace(name_added,',',' '), CHAR(10), ''), CHAR(13), ''),unit,market_price,sale_price,total_sale_amount,category_id,brand_id,status,origin,is_gift from item into OUTFILE '/Users/qiudebo/data/item_test.dat' FIELDS TERMINATED BY ',' ";
+
+mysql -uroot  -p12345678 -h 127.0.0.1 -D mia --default-character-set='utf8'  --skip-column-names  -e "select id,replace(name,',',' '),replace(sname,',',' ') from item_category into OUTFILE '/Users/qiudebo/data/item_category_test.dat' FIELDS TERMINATED BY ',' ";
+
+mysql -uroot  -p12345678 -h 127.0.0.1 -D mia --default-character-set='utf8'  --skip-column-names  -e "select id,replace(name,',',''),replace(chinese_name,',',' '),replace(english_name,',',' ') from item_brand into OUTFILE '/Users/qiudebo/data/item_brand_test.dat' FIELDS TERMINATED BY ',' ";
+
+mysql -uroot  -p12345678 -h 127.0.0.1 -D mia --default-character-set='utf8'  --skip-column-names  -e "select id,old_category_id,new_category_id,status from item_category_map into OUTFILE '/Users/qiudebo/data/item_category_map_test.dat' FIELDS TERMINATED BY ',' ";
+
+mysql -uroot  -p12345678 -h 127.0.0.1 -D mia --default-character-set='utf8'  --skip-column-names  -e "select id,parent_id,name,sname,path,is_leaf,category_img,category_light_image,status,create_time from item_category_ng into OUTFILE '/Users/qiudebo/data/item_category_ng_test.dat' FIELDS TERMINATED BY ',' ";
+
+rm /Users/qiudebo/data/item_test.dat
+rm /Users/qiudebo/data/item_category_test.dat
+rm /Users/qiudebo/data/item_brand_test.dat
+rm /Users/qiudebo/data/item_category_map_test.dat
+rm /Users/qiudebo/data/item_category_ng_test.dat
+
+select a.id,a.name,a.name_added,a.unit,a.market_price,a.sale_price,a.total_sale_amount,a.category_id,b.name,
+       b.sname,a.brand_id,c.name,c.chinese_name,c.english_name,a.origin
+ from item a
+      inner join item_category  b on a.category_id=b.id
+      inner join item_brand c  on a.brand_id=c.id
+ where a.status in (0,1) and a.is_gift = 0 limit 10;
+
+/Users/qiudebo/hive.db/item/20171123/
+/Users/qiudebo/hive.db/item_category/20171123/
+/Users/qiudebo/hive.db/item_brand/20171123/
+/Users/qiudebo/hive.db/item_category_map/20171123/
+/Users/qiudebo/hive.db/item_category_ng/20171123/
+
+select a.id,a.parent_id,a.name,b.old_category_id from item_category_ng a inner join item_category_map b on a.id=b.new_category_id limit 10;
+
+cate_ng_rdd = sc.textFile('/Users/qiudebo/hive.db/item_category_ng/20171123/')
+
+
+作业：
+
+
+1.商品表 分类表 品牌表 
+  mysql导出脚本
+  hive加载脚本
+
+2.spark 统计脚本
+  rdd
+  dataframe
+
+
+过滤	filter
+关联 join
+
+排序 sort
+
+
+分组 groupByKey
+
+累加器
+
+写入hdfs  saveASFile
+
+统计函数
+汇总所有的键 keys
+计数 count
+
+
+x = sc.parallelize([("a", ["1", "2", "3"]),("a", ["4", "5", "6"]), ("b", ["grapes"])])
+
+x = sc.parallelize(("a", 1),("a", 3), ("b", 2),("b",4))
+x.mapValues().collect()
+
+select * from (
+select count(1) from item
+union all
+select count(1) from item_category 
+union all
+select count(1) from item_brand
+) m;
+
+
+select category_id,count(1) from item where (status=0 or status =1) and is_gift =0 group by category_id;
+
+select sum(m.cnt) from (
+select count(distinct a.category_id) as cnt from item a  inner join item_category b on a.category_id = b.id 
+where (a.status=0 or a.status =1) and a.is_gift =0 group by a.category_id
+)m;
+
+
+面试题：
+
+考查点：哈希算法 位图算法
+1.对10亿个电话号码去重
+2.两个10G的文件，找出相同的数据
+  方法1:位图方法 bitmap
+  方法2:哈希方法 
+
+3.负载均衡算法
+
+考查点：树
+
+1.求二叉树的最大距离
+2.二叉树怎么打印根节点到指定节点的路径及两个节点之间的路径
+
+
+考察基础算法：
+1.打印三角形、棱形
+
+
+
+
+=============Machine Learning
+
+量纲
+
+定性分析
+定量计算
+什么是定性，什么是定量。
+
+二元化：离散型随机变量，如：分类特征，如：将分类的特征值驱去重排序后进行编号生成特征向量，然后根据特征向量构建稀疏矩阵。
+
+
+
+Math.log1p() 函数返回一个数字加1后的自然对数 (底为 E), 既log(x+1).
+
+
+
+
+频繁模式挖掘：
+FP-Growth
+算法步骤：
+
+
+
+
+SelectKBest(lambda X, Y: tuple(map(tuple,array(list(map(lambda x:pearsonr(x, Y), X.T))).T)), k=2).fit_transform(iris.data, iris.target)
+
+
+
+
+awk sed 命令
+
+
+线性相关：
+    相关性分析：相关(正相关、负相关)、不相关
+    余弦距离
+    皮尔逊系数
+    斯皮尔曼系数
+
+非线性相关：
+    互信息-信息熵
+
+
+
+
+
+
+==================Spark===================
+
+mlib主要是基于RDD的，抽象级别不够高， ml主要是把数据处理的流水线pipeline抽象出来，算法相当于流水线的一个组件，可以被其他算法随意的替换，这样就让算法和数据处理的其他流程分割开来，实现低耦合。
+
+tf-idf：是一种在文本挖掘中广泛使用的特征向量化方法。它可以体现一个文档中的词语在语料库中的重要程度。
+tf是一个transformer，idf是一个estimator。
+
+Transformer:
+Estimator:
+
+
+
+https://www.zhihu.com/search?type=content&q=hashingTF
+https://github.com/xubo245/MLlibLearning
+
+http://lxw1234.com/archives/2016/01/605.htm
+http://dblab.xmu.edu.cn/blog/1261-2/
+https://tech.meituan.com/spark-tuning-pro.html
+https://www.ibm.com/developerworks/cn/cognitive/library/cc-1606-spark-seniment-analysis/index.html
+
+
+
+
+
+==================读书==================
+黑客与画家
+    编程语言的进化 
+        性能优化
+
+编码的奥秘
+    数字系统
+        进制
+        编码
+
+
+
+
+算法导论
+
+算法分析
+算法设计
+
+
+
+
+渐进记号：3种记法
+1.渐进上界和渐进下界
+2.渐进上界 O
+3.渐进下界 
+
+
+3+2b 
+描述问题规模：
+对数级
+线性级
+平方级
+指数级
+
+最好情况 最坏情况
+
+
+
+快速排序和二叉搜索树的关系
+quickSort
+bst binarySearchTree
+
+
+
+
+
+data struction
+
+delete pop    enqueue
+insert push   dequeue
+search
+
+
+
+//问题解决
+汉诺塔
+
+
+
+数据仓库分层的目的：
+更好的使用仓库（易用性、通用型），简单、高效；
+稳定性，降低与核心层的依赖关系；
+
+这些都是为了更好的使用仓库。
+
+
+
+逻辑概念与物理概念
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

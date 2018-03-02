@@ -1,0 +1,77 @@
+for d in 2015-12-{01..05}
+do
+    echo $d
+done | xargs -P 2 -I {} sh run_pig.code {}
+
+
+
+for d in 2015-12-{01..05}
+do
+    echo $d
+done | xargs -P 2 -I {} echo "set {} {}" | redis-cli -h localhost  -p 6379 
+
+
+for line in $(cat qb.txt)
+do
+    echo $line
+done
+
+
+
+HMSET myhash field222 "Hello" field2 "World"
+
+
+
+
+while read -r var 
+do
+   key=`echo "$var"|cut -f 1 -d ","`
+   value=`echo "$var"|cut -f 2 -d ","`
+   echo $key $value
+done < qb.txt | xargs -P 4 -I {} echo "HMSET {}" | redis-cli -h localhost  -p 6379 
+
+cat ky.txt|xargs -P 4 -I {} echo "HMSET {}" | redis-cli -h localhost  -p 6379 
+
+方案1:
+1.写数据
+数据如下
+cat qb.txt
+a,1
+b,2
+c,3
+d,4
+e,5
+
+四进程同时写redis，xargs -P 4 ，可设置进程数；
+
+while read line
+do
+   key=`echo "$line"|cut -f 1 -d ","`
+   value=`echo "$line"|cut -f 2 -d ","`
+   echo $key $value
+done < qb.txt | xargs -P 4 -I {} echo "set {}" | redis-cli -h localhost  -p 6379 
+
+2.读数据：
+
+redis取出所有的值
+echo 'keys [0-9]*'| redis-cli | xargs -P 4 -I {} echo "get {}" | redis-cli -h localhost  -p 6379 
+
+建议bdp开发公用的服务。
+
+
+方案2:
+
+使用pipe mode 但是有redis版本的限制,我的环境不成功
+
+cat ky.txt | redis-cli --pipe
+
+
+
+
+
+
+
+
+
+
+
