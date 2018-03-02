@@ -1,0 +1,217 @@
+
+
+Python 数值计算
+
+本章节主要讲解用Python来进行数值计算。python提供了很多标准数学库。
+
+
+
+
+数列
+
+生成一个等差数列
+numpy.linspace是用于创建一个一维数组，并且是等差数列构成的一维数组
+个参数，第一个参数表示起始点，第二个参数表示终止点，第三个参数表示数列的个数
+np.linspace(1,10,10)
+linspace创建的数组元素的数据格式，当然是浮点型
+dtype('float64')
+
+
+
+
+生成一个等比数列
+
+numpy.linspace用于创建等差数列，现在介绍logspac用于创建等比数列
+
+np.logspace(0,9,10)
+
+np.logspace(0,9,10)
+
+a = np.logspace(0,9,10,base=2)
+
+
+
+---
+
+排列组合
+
+
+本章节主要讲解如何计算数学中的排列组合。
+
+---
+
+## 排列组合
+排列：从n个不同元素中，任取m(m≤n)个元素，按照一定的顺序排成一列，叫做从n个不同元素中取出m个元素的一个排列。
+
+举例说明：
+
+计算0,1,2 ... ,9的10个数字的全排列。
+
+我们可以使用 scipy.special模块 perm 函数得到组合数，也可以使用 itertools 模块得到所有排列数的结果。
+```
+import numpy as np
+from scipy.special import perm
+from itertools import permutations
+
+p = np.arange(0, 10) # 生成一个数列
+len(list(permutations(p, 6)))  # 排列与元素的顺序有关
+perm(10, 6)
+```
+组合：从n个不同元素中，任取m(m≤n)个元素并成一组，叫做从 n个不同元素中取出m个元素的一个组合。
+
+举例说明：
+双色球 23 选5 总共有多少中组合，从而我们可以计算中奖的比例。我们可以使用 scipy.special模块 comb函数得到组合数，也可以使用 itertools 模块得到所有组合的结果。
+```
+import numpy as np
+from scipy.special import comb
+from itertools import combinations
+
+c = np.linspace(1, 23, 23) # 生成一个等差数列
+len(list(combinations(c, 5))) # 组合与元素的顺序无关
+comb(23, 5)
+
+```
+
+线性代数
+
+本章节主要解决线性代数中线性方程和矩阵的计算。
+
+---
+
+##矩阵计算
+
+
+### 定义一个矩阵
+```
+import numpy as np
+
+np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+```
+### 生成一个矩阵
+```
+import numpy as np
+
+np.arange(1, 10, 1).reshape(3, 3)
+np.arange(10, 50, 10).reshape(-1, 1)  # 行矩阵
+np.arange(10, 50, 10).reshape(1, -1)  # 列矩阵
+```
+### 对角阵
+```
+import numpy as np
+
+x = np.arange(9).reshape((3, 3))
+np.diag(x, k=0)
+np.diag(x, k=-1)
+np.diag(x, k=1)
+np.diag(np.diag(x))
+```
+### 零矩阵
+```
+import numpy as np
+
+np.zeros((5,), dtype=np.int)
+np.zeros((3, 1), dtype=np.int)
+np.zeros((1, 3), dtype=np.int)
+np.zeros((2,), dtype=[('x', 'i4'), ('y', 'i4')])
+```
+
+## 线性方程
+
+```
+from sympy import solve, symbols
+
+x, y = symbols('x,y')
+print solve([x + 5 * y - 2, -3 * x + 6 * y - 15], [x, y])
+```
+
+
+
+微积分
+
+本章节我们主要讲解如何使用科学计算库来计算极限、微分、积分。下面我们使用数学符号科学计算库 Sympy 计算高等数学中的例题。
+
+---
+## 计算极限
+
+在SymPy中计算极限的语法为：
+```
+limit(function, variable, point)
+```
+如果要计算函数f(x)，当$$x \rightarrow 0$$时的极限, 你应该使用limit(f, x, 0)。
+
+求$$\lim_{x\rightarrow 2}\frac{x^{3}-1}{x^{2}-5x+3}$$
+
+```
+from sympy import symbols
+from sympy import limit
+
+x = symbols('x') # 定义数学符号
+limit((x**3-1)/(x**2-5*x+3), x, 2)
+```
+
+求$$\lim_{x\rightarrow \infty }\frac{3x^{3}+4x^{2}+2}{7x^{3}+5x^{2}-3}$$,x趋于无穷大时的极限
+```
+from sympy import symbols
+from sympy import limit, oo
+
+x = symbols('x') # 定义数学符号
+limit((3*x**2-2*x-1)/(2*x**3-x**2+5),x,oo)
+```
+## 计算导数、微分
+在SymPy中计算导数的语法为：
+```
+diff(func, var)
+```
+### 一阶导数
+求函数 $$y=2x^{3}-5x^{2}+3x-7$$的一阶导数$${y}'$$。
+```
+from sympy import symbols
+from sympy import diff
+
+x = symbols('x') # 定义数学符号
+diff(2 * x ** 3 - 5 * x ** 2 + 3 * x - 7, x, 1)
+```
+### 高阶导数
+在SymPy中计算极限的语法为：
+```
+使用 diff(func, var, n) 
+```
+
+求函数 $$y=x^{2}e^{2x}$$ 导数 $$y^{(20)}$$
+
+```
+from sympy import symbols
+from sympy import diff
+from sympy import exp
+
+x = symbols('x') # 定义数学符号
+diff((x**2)*exp(2*x), x, 20)
+```
+
+## 积分
+
+在SymPy中使用 integrate() 函数计算积分
+
+### 计算不定积分
+求函数 $$\int x^{2}\sqrt{x}dx$$ 的不定积分
+
+```
+from sympy import symbols
+from sympy import integrate
+
+x = symbols('x') # 定义数学符号
+integrate(x**2*x**(1/2),x)
+```
+### 计算定积分
+求函数 $$\int_{0}^{1}x^{2}dx$$ 的定积分
+
+```
+from sympy import symbols
+from sympy import integrate
+
+x = symbols('x') # 定义数学符号
+integrate(x ** 2, (x, 0, 1))
+```
+
+
+

@@ -1,0 +1,6 @@
+
+数据服务的目录
+http://new.13learn.com/data/sites.php
+
+/home/wwwroot/new.13learn.com/data
+

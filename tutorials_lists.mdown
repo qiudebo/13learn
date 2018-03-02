@@ -12,7 +12,6 @@ R 语言绘图
 ggplot2 绘图
 
 
-
 Python 统计分析
 
 
@@ -22,6 +21,5 @@ Python 数据挖掘 ---
 matplotlib 绘图
 
 
-
-
+Pandas 鸢尾花数据集
 

@@ -1,0 +1,49 @@
+
+
+
+
+##Numpy 课程
+
+### Numpy介绍
+
+### Numpy 基础
+lesson1
+
+### Numpy 高级
+ndarray
+
+### Numpy 应用数学 /科学计算/机器学习基础
+
+介绍 python 与科学计算
+
+Numpy 线性代数(行列式、矩阵)
+
+Numpy 概率与信息论（随机变量、分布）
+
+Numpy 数值计算（）
+
+Numpy 应用
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
