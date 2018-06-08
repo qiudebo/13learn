@@ -15,17 +15,180 @@ Churn Prediction
 
 
 
+issues:
+   1.需要会员开始时间、结束时间，用来排除那些会员结束前非常活跃的用户。
+   
 
 
 
+--------------------------------------------
+
+1. 挂载数据文件的脚本
 
 
+2. 调用程序的脚本
 
 
+3.程序
+  a.预处理
+  b.train
+  c.model
+  d.prediction
+
+4.存储预测结果
 
 
+--------------------------------------------
+pyspark --master yarn --deploy-mode cluster
+/user/dm/data/test/output
 
 
+df.write.save(path='csv', format='csv', mode='append', sep='\t')
+-----------------------------------------------------------------
+
+http://spark.apache.org/docs/latest/api/python/pyspark.ml.html#module-pyspark.ml.classification
+--------------------------------------------
+
+最大可以设置成29G
+29G+29G/10 < 32Ｇ
+
+spark-submit \
+  --master yarn \
+  --deploy-mode cluster \
+  --executor-memory 12G \
+  --executor-cores 4 \
+  --num-executors 20 \
+  /home/dm/ml/train/train_churn_prediction.py
+spark-submit \
+  --master yarn \
+  --deploy-mode cluster \
+  --executor-memory 12G \
+  --executor-cores 4 \
+  --num-executors 20 \
+  /home/dm/ml/train/prediction_churn.py
+spark-submit \
+  --master yarn \
+  --deploy-mode cluster \
+  --executor-memory 16G \
+  --executor-cores 20 \
+  --num-executors 2 \
+  /home/dm/ml/train/prediction_churn.py
+
+spark-submit \
+  --master yarn \
+  --deploy-mode cluster \
+  --executor-memory 4G \
+  --executor-cores 4 \
+  --num-executors 20 \
+  /home/dm/ml/churn_prediction/optimal_churn.py
+
+spark-submit \
+  --master yarn \
+  --deploy-mode cluster \
+  --executor-memory 16G \
+  --executor-cores 4 \
+  --num-executors 20 \
+  /home/dm/ml/churn_prediction/dm_train_churn_model.py
+
+  
+ -----------------------------------------------------------
+
+df=spark.sql("select dvc_id,main_desk,district_name,model_id,ui_ver,halfhour_active_days,first_start_days,cv,pt,eff_cv,eff_pt,play_days,desk_show_times_5s,desk_show_times_2s,desk_pv,desk_click_times,start_times,close_times,duration,user_id,is_churn from dm.dwa_retain_dvc_churn_train_sample_day where dt = '20180228'")
+
+df.write.parquet(os.path.join(tempfile.mkdtemp(), 'data'))
+
+df.write.option("header","true").csv("/user/dm/data/test/output/churn2")
+
+df.write.save("/user/dm/data/test/output/churn_test1")
+
+df.write.csv("/user/dm/data/test/output/all_churn")
+
+df.write.csv("/user/dm/data/test/output/churn_sample")
+
+parquetFile = spark.read.parquet("/user/dm/data/test/output/result05")
+
+parquetFile = spark.read.parquet("people.parquet")
+
+df.select('main_deskclassVec').show(2,False)
+df.select('district_nameclassVec').show(2,False)
+df.select('ui_verclassVec').show(2,False)
+df.select('features').show(2,False)
+
+spark.sql("drop table test")
+df = spark.read.csv("/user/dm/data/test/output/churn2")
+spark.sql("drop table account_text")
+df = spark.sql("select count(1) from (select distinct dvc_id from dm.dwa_retain_dvc_churn_train_all_day where is_churn=1 and dt = '20180228') a")
+df = spark.sql("select count(1) from (select distinct dvc_id from dm.dwa_retain_dvc_churn_train_all_day where is_churn=1) a")
+
+spark.sql("
+select 
+dvc_id,
+main_desk,
+district_name,
+model_id,
+ui_ver,
+halfhour_active_days,
+first_start_days,    
+is_dvc_bind, 
+dvc_bind_days,
+cv,
+pt,
+eff_cv,
+eff_pt,
+oa_station_cv,
+oa_station_pt,
+sm_cv,
+sm_pt,
+mango_cv,
+mango_pt,
+wasu_cv,
+wasu_pt,
+tencent_cv,
+tencent_pt,
+cibn_cv,
+cibn_pt,
+twoc_cv,
+twoc_pt,
+play_days,
+signal_cv,
+signal_pt,
+desk_show_times_2s,
+desk_show_times_5s,
+desk_pv,
+desk_click_times,
+start_times,
+close_times,
+duration,
+user_id,
+is_sm,
+sm_exp_days,
+is_churn
+from dwa_retain_dvc_churn_train_sample_day where dt ='20180228'
+
+")
+
+
+df=spark.sql("select dvc_id,main_desk,district_name,model_id,ui_ver,halfhour_active_days,first_start_days,cv,pt,eff_cv,eff_pt,play_days,desk_show_times_5s,desk_show_times_2s,desk_pv,desk_click_times,start_times,close_times,duration,user_id from  dm.dwa_retain_dvc_churn_pre_day where dt = '20180603'")
+
+df.write.option("header","true").csv("/user/dm/data/test/output/churn_prediction")
+df.write.csv("/user/dm/data/test/output/churn_prediction")
+
+df.select('cv').groupby('cv').count().show()
+df.select('cvQuantile').groupby('cvQuantile').count().show()
+
+df.filter(df.cv<12.0).count()
+
+import pandas as pd
+
+a.quantile(0.25)
+a=df.select('cv').toPandas()
+a.quantile(0.25)
+a.quantile(0.5)
+a.quantile(0.75)
+a[a['cv']<12.0]
+
+
+df.coalesce(1).write.format("text").option("header", "false").mode("append").save("<path>"
 
 
 
